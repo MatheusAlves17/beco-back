@@ -1,4 +1,5 @@
 import  prismaClient  from '../../prisma/index';
+import { hash } from 'bcryptjs';
 
 import { IUser } from "../../interfaces";
 
@@ -46,7 +47,7 @@ class CreateUserService {
             throw new Error('E-mail já cadastrado');
         };
 
-
+        const passwordHash = await hash(password, 8);
 
         const user = await prismaClient.prismaClient.user.create({
             data:{
@@ -54,7 +55,7 @@ class CreateUserService {
                 cpf,
                 phone,
                 email,
-                password,
+                password: passwordHash,
                 picture
             },
             select:{
