@@ -1,3 +1,4 @@
+import { AuthUserService } from "./user/AuthUserService";
 import { CreateUserService } from "./user/CreateUserService";
 
-export { CreateUserService };
+export { AuthUserService, CreateUserService  };
