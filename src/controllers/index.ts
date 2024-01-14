@@ -10,6 +10,9 @@ import { UpdateCardController } from "./card/UpdateCardController";
 import { SelectCardController } from "./card/SelectCardController";
 import { SelectCardsController } from "./card/SelectCardsController";
 
+import { CreateAddressController } from "./address/CreateAddressController";
+import { UploadAddressController } from "./address/UploadAddressController";
+
 export {
     AuthUserController,
     CreateUserController,
@@ -24,4 +27,9 @@ export {
     UpdateCardController,
     SelectCardController,
     SelectCardsController
+};
+
+export {
+    CreateAddressController,
+    UploadAddressController
 };

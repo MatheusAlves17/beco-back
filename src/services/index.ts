@@ -10,6 +10,9 @@ import { SelectCardService } from './card/SelectCardService';
 import { UpdateCardService } from './card/UpdateCardService';
 import { SelectCardsService } from './card/SelectCardsService';
 
+import { CreateAddressService } from "./address/CreateAddressService";
+import { UploadAddressService } from "./address/UploadAddressService";
+
 export {
     AuthUserService,
     CreateUserService,
@@ -24,4 +27,9 @@ export {
     SelectCardService,
     UpdateCardService,
     SelectCardsService,
+};
+
+export {
+    CreateAddressService,
+    UploadAddressService,
 };
