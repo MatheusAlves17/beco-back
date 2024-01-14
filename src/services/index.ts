@@ -7,6 +7,7 @@ import { DetailsUserService } from "./user/DetailsUserService";
 import { CreateCardService } from './card/CreateCardService';
 import { DeleteCardService } from './card/DeleteCardService';
 import { SelectCardService } from './card/SelectCardService';
+import { UpdateCardService } from './card/UpdateCardService';
 import { SelectCardsService } from './card/SelectCardsService';
 
 export {
@@ -21,5 +22,6 @@ export {
     CreateCardService,
     DeleteCardService,
     SelectCardService,
+    UpdateCardService,
     SelectCardsService,
 };

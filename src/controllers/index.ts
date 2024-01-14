@@ -6,6 +6,7 @@ import { DetailsUserController } from "./user/DetailsUserController";
 
 import { CreateCardController } from "./card/CreateCardController";
 import { DeleteCardController } from "./card/DeleteCardController";
+import { UpdateCardController } from "./card/UpdateCardController";
 import { SelectCardController } from "./card/SelectCardController";
 import { SelectCardsController } from "./card/SelectCardsController";
 
@@ -20,6 +21,7 @@ export {
 export {
     CreateCardController,
     DeleteCardController,
+    UpdateCardController,
     SelectCardController,
     SelectCardsController
 };
