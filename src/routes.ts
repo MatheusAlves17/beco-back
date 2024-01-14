@@ -9,7 +9,8 @@ import {
 
     CreateCardController,
     DeleteCardController,
-    SelectCardsController
+    SelectCardsController,
+    SelectCardController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -22,6 +23,7 @@ router.put('/user/update',isAuthenticated,  new UpdateUserController().handle);
 router.get('/user/details',isAuthenticated,  new DetailsUserController().handle);
 router.delete('/user/delete',isAuthenticated,  new DeleteUserController().handle);
 
+router.get('/user/card',isAuthenticated,  new SelectCardController().handle);
 router.post('/user/card',isAuthenticated,  new CreateCardController().handle);
 router.get('/user/cards',isAuthenticated,  new SelectCardsController().handle);
 router.delete('/user/card',isAuthenticated,  new DeleteCardController().handle);
