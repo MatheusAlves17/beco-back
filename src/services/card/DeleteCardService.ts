@@ -1,9 +1,5 @@
+import { IDeleteCard } from '../../interfaces';
 import prismaClient from '../../prisma';
-
-interface IDeleteCard {
-    card_id: string;
-    user_id: string;
-}
 
 class DeleteCardService {
     async execute({ card_id, user_id }: IDeleteCard) {

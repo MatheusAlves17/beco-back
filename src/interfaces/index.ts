@@ -5,6 +5,7 @@ import { IUpdateUser } from "./user/Update";
 import { IPayload } from './auth/Payload';
 
 import { ICard } from "./card/Card";
+import { IDeleteCard } from "./card/DeleteCard";
 
 export {
     IUser,
@@ -14,4 +15,4 @@ export {
 
 export { IPayload };
 
-export { ICard };
+export { ICard, IDeleteCard };
