@@ -8,6 +8,9 @@ import { ICard } from "./card/Card";
 import { IUpdateCard } from "./card/UpdateCard";
 import { IDeleteCard } from "./card/DeleteCard";
 
+import { IAddress } from "./address/Address";
+import { IUploadAddress } from "./address/UploadAddress";
+
 export {
     IUser,
     ILogin,
@@ -20,4 +23,9 @@ export {
     ICard,
     IUpdateCard,
     IDeleteCard
+};
+
+export {
+    IAddress,
+    IUploadAddress
 };
