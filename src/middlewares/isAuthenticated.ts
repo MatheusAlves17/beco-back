@@ -3,8 +3,6 @@ import { IPayload } from "../interfaces";
 import { verify } from "jsonwebtoken";
 
 export const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
-    console.log('chamou');
-
     const authToken = req.headers.authorization;
 
     if (!authToken) {

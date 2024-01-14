@@ -7,7 +7,8 @@ import {
     DeleteUserController,
     DetailsUserController,
 
-    CreateCardController
+    CreateCardController,
+    DeleteCardController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -21,6 +22,7 @@ router.put('/user/update',isAuthenticated,  new UpdateUserController().handle);
 router.delete('/user/delete',isAuthenticated,  new DeleteUserController().handle);
 
 router.post('/user/card',isAuthenticated,  new CreateCardController().handle);
+router.delete('/user/card/',isAuthenticated,  new DeleteCardController().handle);
 
 
 export { router };

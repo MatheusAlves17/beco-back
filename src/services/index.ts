@@ -5,6 +5,7 @@ import { DeleteUserService } from "./user/DeleteUserService";
 import { DetailsUserService } from "./user/DetailsUserService";
 
 import { CreateCardService } from './card/CreateCardService';
+import { DeleteCardService } from './card/DeleteCardService';
 
 export {
     AuthUserService,
@@ -14,4 +15,4 @@ export {
     DetailsUserService
 };
 
-export { CreateCardService };
+export { CreateCardService, DeleteCardService };

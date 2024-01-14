@@ -5,6 +5,7 @@ import { DeleteUserController } from "./user/DeleteUserController";
 import { DetailsUserController } from "./user/DetailsUserController";
 
 import { CreateCardController } from "./card/CreateCardController";
+import { DeleteCardController } from "./card/DeleteCardController";
 
 export {
     AuthUserController,
@@ -14,4 +15,4 @@ export {
     DetailsUserController
 };
 
-export { CreateCardController };
+export { CreateCardController, DeleteCardController };
