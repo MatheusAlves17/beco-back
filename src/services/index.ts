@@ -12,6 +12,7 @@ import { SelectCardsService } from './card/SelectCardsService';
 
 import { CreateAddressService } from "./address/CreateAddressService";
 import { UploadAddressService } from "./address/UploadAddressService";
+import { DeleteAddressService } from "./address/DeleteAddressService";
 
 export {
     AuthUserService,
@@ -32,4 +33,5 @@ export {
 export {
     CreateAddressService,
     UploadAddressService,
+    DeleteAddressService,
 };

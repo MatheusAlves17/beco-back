@@ -15,6 +15,7 @@ import {
 
     CreateAddressController,
     UploadAddressController,
+    DeleteAddressController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -35,6 +36,7 @@ router.delete('/user/card',isAuthenticated,  new DeleteCardController().handle);
 
 router.post('/user/address',isAuthenticated,  new CreateAddressController().handle);
 router.put('/user/address',isAuthenticated,  new UploadAddressController().handle);
+router.delete('/user/address',isAuthenticated,  new DeleteAddressController().handle);
 
 
 export { router };

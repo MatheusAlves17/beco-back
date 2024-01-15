@@ -12,6 +12,7 @@ import { SelectCardsController } from "./card/SelectCardsController";
 
 import { CreateAddressController } from "./address/CreateAddressController";
 import { UploadAddressController } from "./address/UploadAddressController";
+import { DeleteAddressController } from "./address/DeleteAddressController";
 
 export {
     AuthUserController,
@@ -31,5 +32,6 @@ export {
 
 export {
     CreateAddressController,
-    UploadAddressController
+    UploadAddressController,
+    DeleteAddressController
 };
