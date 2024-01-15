@@ -16,6 +16,8 @@ import { DeleteAddressController } from "./address/DeleteAddressController";
 import { SelectAddressController } from "./address/SelectAddressController";
 import { SelectAllAddressController } from "./address/SelectAllAddressController";
 
+import { CreateCategoryController } from "./category/CreateCategoryController";
+
 export {
     AuthUserController,
     CreateUserController,
@@ -38,4 +40,8 @@ export {
     DeleteAddressController,
     SelectAddressController,
     SelectAllAddressController
+};
+
+export {
+    CreateCategoryController
 };

@@ -17,7 +17,9 @@ import {
     UploadAddressController,
     DeleteAddressController,
     SelectAddressController,
-    SelectAllAddressController
+    SelectAllAddressController,
+
+    CreateCategoryController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -41,6 +43,8 @@ router.put('/user/address',isAuthenticated,  new UploadAddressController().handl
 router.post('/user/address',isAuthenticated,  new CreateAddressController().handle);
 router.get('/user/all-address',isAuthenticated,  new SelectAllAddressController().handle);
 router.delete('/user/address',isAuthenticated,  new DeleteAddressController().handle);
+
+router.post('/category',isAuthenticated,  new CreateCategoryController().handle);
 
 
 export { router };

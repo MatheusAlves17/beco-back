@@ -16,6 +16,8 @@ import { DeleteAddressService } from "./address/DeleteAddressService";
 import { SelectAddressService } from "./address/SelectAddressService";
 import { SelectAllAddressService } from "./address/SelectAllAddressService";
 
+import { CreateCategoryService } from "./category/CreateCategoryService";
+
 export {
     AuthUserService,
     CreateUserService,
@@ -38,4 +40,8 @@ export {
     DeleteAddressService,
     SelectAddressService,
     SelectAllAddressService
+};
+
+export {
+    CreateCategoryService
 };
