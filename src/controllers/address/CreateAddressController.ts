@@ -9,7 +9,7 @@ class CreateAddressController {
         const { street, number, district, city, state, zipCode } = req.body;
 
         const createAddressService = new CreateAddressService();
-        const address = createAddressService.execute({
+        const address = await createAddressService.execute({
             street,
             number,
             district,

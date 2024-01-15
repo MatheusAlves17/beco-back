@@ -6,7 +6,7 @@ class DeleteAddressController {
         const address_id = req.query.address_id as string;
 
         const deleteAddressService = new DeleteAddressService();
-        const address = deleteAddressService.execute(address_id);
+        const address = await deleteAddressService.execute(address_id);
 
         return res.json(address);
     }

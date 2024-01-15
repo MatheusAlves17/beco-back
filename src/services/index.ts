@@ -14,6 +14,7 @@ import { CreateAddressService } from "./address/CreateAddressService";
 import { UploadAddressService } from "./address/UploadAddressService";
 import { DeleteAddressService } from "./address/DeleteAddressService";
 import { SelectAddressService } from "./address/SelectAddressService";
+import { SelectAllAddressService } from "./address/SelectAllAddressService";
 
 export {
     AuthUserService,
@@ -36,4 +37,5 @@ export {
     UploadAddressService,
     DeleteAddressService,
     SelectAddressService,
+    SelectAllAddressService
 };

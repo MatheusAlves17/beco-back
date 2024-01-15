@@ -16,7 +16,8 @@ import {
     CreateAddressController,
     UploadAddressController,
     DeleteAddressController,
-    SelectAddressController
+    SelectAddressController,
+    SelectAllAddressController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -38,6 +39,7 @@ router.delete('/user/card',isAuthenticated,  new DeleteCardController().handle);
 router.get('/user/address',isAuthenticated,  new SelectAddressController().handle);
 router.put('/user/address',isAuthenticated,  new UploadAddressController().handle);
 router.post('/user/address',isAuthenticated,  new CreateAddressController().handle);
+router.get('/user/all-address',isAuthenticated,  new SelectAllAddressController().handle);
 router.delete('/user/address',isAuthenticated,  new DeleteAddressController().handle);
 
 
