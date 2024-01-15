@@ -25,6 +25,8 @@ model User {
   @@map("users")
   address Address[]
   card Card[]
+  order Order[]
+  coupon Coupon[]
 
 }
 
@@ -44,6 +46,8 @@ model Address {
 
   user User @relation(fields: [user_id], references: [id])
   user_id String
+
+  order Order[]
 }
 
 model Card {
@@ -59,4 +63,115 @@ model Card {
   @@map("card")
   user User @relation(fields: [user_id], references: [id])
   user_id String
+
+  payment Payment[]
+}
+
+model Category{
+  id String @id @default(uuid())
+  name String
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("categories")
+  product Product[]
+}
+
+model Product {
+  id String @id @default(uuid())
+  name String
+  price Decimal
+  description String
+  banner String
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("products")
+  
+  category_id String
+  category Category @relation(fields: [category_id], references: [id])
+  items Item[]
+}
+
+model Order {
+  id String @id @default(uuid())
+  
+  shipping Decimal
+  value_total Decimal
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+  
+  @@map("orders")
+    
+  status Status @relation(fields: [status_id], references: [id])
+  status_id String
+  
+  user User @relation(fields: [user_id], references: [id])
+  user_id String
+
+  address Address @relation(fields: [address_id], references: [id])
+  address_id String
+
+  payment Payment[]
+  item Item[]
+}
+
+model Item {
+  id String @id @default(uuid())
+  
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+  
+
+  @@map("items")
+  
+  order Order @relation(fields: [order_id], references: [id])
+  order_id String
+  
+  product Product @relation(fields: [product_id], references: [id])
+  product_id String
+}
+
+model Status {
+  id String @id @default(uuid())
+  name String
+
+  @@map("status")
+  order Order[]
+}
+
+model Payment {
+  id String @id @default(uuid())
+  
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+  
+  @@map("payments")
+  order Order @relation(fields: [order_id], references: [id])
+  order_id String
+
+  card Card @relation(fields: [card_id], references: [id])
+  card_id String
+
+  coupon Coupon? @relation(fields: [coupon_id], references: [id])
+  coupon_id String? @unique
+}
+
+model Coupon {
+  id String @id @default(uuid())
+  value Decimal
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+  
+  @@map("coupons")
+
+  user User @relation(fields: [user_id], references: [id])
+  user_id String
+
+  payment Payment?
+
 }
