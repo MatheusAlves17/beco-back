@@ -18,6 +18,7 @@ model User {
   email String
   password String
   picture String
+  role String @default("client")
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())

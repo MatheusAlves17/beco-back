@@ -6,7 +6,7 @@ import { IUser } from "../../interfaces";
 
 
 class CreateUserService {
-    async execute({ name, cpf, phone, email, password, picture }: IUser) {
+    async execute({ name, cpf, phone, email, password, role, picture }: IUser) {
         if(!name){
             throw new Error('Nome é obrigatório');
         }
@@ -56,6 +56,7 @@ class CreateUserService {
                 phone,
                 email,
                 password: passwordHash,
+                role,
                 picture
             },
             select:{
