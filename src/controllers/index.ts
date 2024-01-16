@@ -18,6 +18,7 @@ import { SelectAllAddressController } from "./address/SelectAllAddressController
 
 import { CreateCategoryController } from "./category/CreateCategoryController";
 import { SelectCategoryController } from "./category/SelectCategoryController";
+import { UpdateCategoryController } from "./category/UpdateCategoryController";
 import { SelectAllCategoriesController } from "./category/SelectAllCategoriesController";
 
 export {
@@ -47,5 +48,6 @@ export {
 export {
     CreateCategoryController,
     SelectCategoryController,
+    UpdateCategoryController,
     SelectAllCategoriesController
 };
