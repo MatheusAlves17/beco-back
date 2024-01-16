@@ -48,6 +48,7 @@ router.delete('/user/address',isAuthenticated,  new DeleteAddressController().ha
 
 router.post('/category',isAuthenticated,  new CreateCategoryController().handle);
 router.get('/category/all',isAuthenticated,  new SelectAllCategoriesController().handle);
+router.get('/category/one',isAuthenticated,  new SelectCategoryController().handle);
 
 
 export { router };
