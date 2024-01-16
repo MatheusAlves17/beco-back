@@ -22,6 +22,8 @@ import { UpdateCategoryService } from "./category/UpdateCategoryService";
 import { DeleteCategoryService } from "./category/DeleteCategoryService";
 import { SelectAllCategoriesService } from "./category/SelectAllCategoriesService";
 
+import { CreateProductService } from "./product/CreateProductService";
+
 export {
     AuthUserService,
     CreateUserService,
@@ -52,4 +54,8 @@ export {
     UpdateCategoryService,
     DeleteCategoryService,
     SelectAllCategoriesService
+};
+
+export {
+    CreateProductService
 };

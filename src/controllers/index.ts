@@ -22,6 +22,8 @@ import { UpdateCategoryController } from "./category/UpdateCategoryController";
 import { DeleteCategoryController } from "./category/DeleteCategoryController";
 import { SelectAllCategoriesController } from "./category/SelectAllCategoriesController";
 
+import { CreateProductController } from "./product/CreateProductController";
+
 export {
     AuthUserController,
     CreateUserController,
@@ -52,4 +54,8 @@ export {
     UpdateCategoryController,
     DeleteCategoryController,
     SelectAllCategoriesController
+};
+
+export {
+    CreateProductController
 };
