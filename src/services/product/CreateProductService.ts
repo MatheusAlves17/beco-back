@@ -52,7 +52,7 @@ class CreateProductService {
                 description,
                 banner,
                 category_id,
-                // stock
+                stock
             }
         });
 
