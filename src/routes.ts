@@ -22,7 +22,8 @@ import {
     CreateCategoryController,
     SelectCategoryController,
     UpdateCategoryController,
-    SelectAllCategoriesController
+    SelectAllCategoriesController,
+    DeleteCategoryController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -51,6 +52,7 @@ router.post('/category',isAuthenticated,  new CreateCategoryController().handle)
 router.get('/category/one',isAuthenticated,  new SelectCategoryController().handle);
 router.put('/category/update',isAuthenticated,  new UpdateCategoryController().handle);
 router.get('/category/all',isAuthenticated,  new SelectAllCategoriesController().handle);
+router.delete('/category/delete',isAuthenticated,  new DeleteCategoryController().handle);
 
 
 export { router };

@@ -19,6 +19,7 @@ import { SelectAllAddressService } from "./address/SelectAllAddressService";
 import { CreateCategoryService } from "./category/CreateCategoryService";
 import { SelectCategoryService } from "./category/SelectCategoryService";
 import { UpdateCategoryService } from "./category/UpdateCategoryService";
+import { DeleteCategoryService } from "./category/DeleteCategoryService";
 import { SelectAllCategoriesService } from "./category/SelectAllCategoriesService";
 
 export {
@@ -49,5 +50,6 @@ export {
     CreateCategoryService,
     SelectCategoryService,
     UpdateCategoryService,
+    DeleteCategoryService,
     SelectAllCategoriesService
 };
