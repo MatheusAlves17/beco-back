@@ -3,8 +3,6 @@ import { hash } from 'bcryptjs';
 
 import { IUser } from "../../interfaces";
 
-
-
 class CreateUserService {
     async execute({ name, cpf, phone, email, password, role, picture }: IUser) {
         if(!name){

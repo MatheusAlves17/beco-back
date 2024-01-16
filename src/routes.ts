@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import multer from 'multer'; 
 
 import {
     AuthUserController,
@@ -27,10 +28,13 @@ import {
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
+import uploadConfig from './config/multer';
 
 const router = Router();
+const upload = multer(uploadConfig.upload("./tmp"))
 
-router.post('/user', new CreateUserController().handle);
+
+router.post('/user', upload.single('file'), new CreateUserController().handle);
 router.post('/user/session', new AuthUserController().handle);
 router.put('/user/update',isAuthenticated,  new UpdateUserController().handle);
 router.get('/user/details',isAuthenticated,  new DetailsUserController().handle);
