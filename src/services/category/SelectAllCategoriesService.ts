@@ -1,5 +1,5 @@
 import prismaClient from '../../prisma/index';
-class SelectCategoryService {
+class SelectAllCategoriesService {
     async execute(user_id: string) {
         const isAdmin = await prismaClient.prismaClient.user.findFirst({
             where: {
@@ -21,4 +21,4 @@ class SelectCategoryService {
     };
 };
 
-export { SelectCategoryService };
+export { SelectAllCategoriesService };

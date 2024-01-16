@@ -17,6 +17,8 @@ import { SelectAddressController } from "./address/SelectAddressController";
 import { SelectAllAddressController } from "./address/SelectAllAddressController";
 
 import { CreateCategoryController } from "./category/CreateCategoryController";
+import { SelectCategoryController } from "./category/SelectCategoryController";
+import { SelectAllCategoriesController } from "./category/SelectAllCategoriesController";
 
 export {
     AuthUserController,
@@ -43,5 +45,7 @@ export {
 };
 
 export {
-    CreateCategoryController
+    CreateCategoryController,
+    SelectCategoryController,
+    SelectAllCategoriesController
 };

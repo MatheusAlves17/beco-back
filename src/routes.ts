@@ -19,7 +19,9 @@ import {
     SelectAddressController,
     SelectAllAddressController,
 
-    CreateCategoryController
+    CreateCategoryController,
+    SelectCategoryController,
+    SelectAllCategoriesController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -45,6 +47,7 @@ router.get('/user/all-address',isAuthenticated,  new SelectAllAddressController(
 router.delete('/user/address',isAuthenticated,  new DeleteAddressController().handle);
 
 router.post('/category',isAuthenticated,  new CreateCategoryController().handle);
+router.get('/category/all',isAuthenticated,  new SelectAllCategoriesController().handle);
 
 
 export { router };

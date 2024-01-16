@@ -17,6 +17,8 @@ import { SelectAddressService } from "./address/SelectAddressService";
 import { SelectAllAddressService } from "./address/SelectAllAddressService";
 
 import { CreateCategoryService } from "./category/CreateCategoryService";
+import { SelectCategoryService } from "./category/SelectCategoryService";
+import { SelectAllCategoriesService } from "./category/SelectAllCategoriesService";
 
 export {
     AuthUserService,
@@ -43,5 +45,7 @@ export {
 };
 
 export {
-    CreateCategoryService
+    CreateCategoryService,
+    SelectCategoryService,
+    SelectAllCategoriesService
 };
