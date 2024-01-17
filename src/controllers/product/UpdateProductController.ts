@@ -8,7 +8,7 @@ class UpdateProductController {
         const {filename} = req.file;
 
         const updateProductService = new UpdateProductService();
-        const product = updateProductService.execute(
+        const product = await updateProductService.execute(
             user_id,
             {
                 id,

@@ -28,7 +28,8 @@ import {
 
     CreateProductController,
     UpdateProductController,
-    SelectProductsController
+    SelectProductsController,
+    SelectProductController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -62,6 +63,7 @@ router.put('/category/update', isAuthenticated, new UpdateCategoryController().h
 router.get('/category/all', isAuthenticated, new SelectAllCategoriesController().handle);
 router.delete('/category/delete', isAuthenticated, new DeleteCategoryController().handle);
 
+router.get('/product/one', new SelectProductController().handle);
 router.get('/product/all', new SelectProductsController().handle);
 router.post('/product', isAuthenticated, upload.single('file'), new CreateProductController().handle);
 router.put('/product', isAuthenticated, upload.single('file'), new UpdateProductController().handle);

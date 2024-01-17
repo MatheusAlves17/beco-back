@@ -24,6 +24,7 @@ import { SelectAllCategoriesController } from "./category/SelectAllCategoriesCon
 
 import { CreateProductController } from "./product/CreateProductController";
 import { UpdateProductController } from "./product/UpdateProductController";
+import { SelectProductController } from "./product/SelectProductController";
 import { SelectProductsController } from "./product/SelectProductsController";
 
 export {
@@ -61,5 +62,6 @@ export {
 export {
     CreateProductController,
     UpdateProductController,
-    SelectProductsController
+    SelectProductController,
+    SelectProductsController,
 };
