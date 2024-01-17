@@ -17,7 +17,7 @@ class CreateProductController {
                 description,
                 banner: filename,
                 category_id,
-                stock
+                stock: parseInt(stock)
             }
         );
 

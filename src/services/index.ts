@@ -23,6 +23,7 @@ import { DeleteCategoryService } from "./category/DeleteCategoryService";
 import { SelectAllCategoriesService } from "./category/SelectAllCategoriesService";
 
 import { CreateProductService } from "./product/CreateProductService";
+import { UpdateProductService } from "./product/UpdateProductService";
 
 export {
     AuthUserService,
@@ -57,5 +58,6 @@ export {
 };
 
 export {
-    CreateProductService
+    CreateProductService,
+    UpdateProductService
 };

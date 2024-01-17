@@ -26,7 +26,8 @@ import {
     SelectAllCategoriesController,
     DeleteCategoryController,
 
-    CreateProductController
+    CreateProductController,
+    UpdateProductController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -61,6 +62,7 @@ router.get('/category/all', isAuthenticated, new SelectAllCategoriesController()
 router.delete('/category/delete', isAuthenticated, new DeleteCategoryController().handle);
 
 router.post('/product', isAuthenticated, upload.single('file'), new CreateProductController().handle);
+router.put('/product', isAuthenticated, upload.single('file'), new UpdateProductController().handle);
 
 
 export { router };

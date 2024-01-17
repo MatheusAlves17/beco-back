@@ -85,7 +85,7 @@ model Product {
   price Decimal
   description String
   banner String
-  stock Int
+  stock Decimal
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())

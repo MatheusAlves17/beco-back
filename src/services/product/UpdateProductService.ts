@@ -1,6 +1,7 @@
 import prismaClient from '../../prisma';
 
-interface ICreateProduct {
+export interface IUpdateProduct {
+    id: string;
     name: string;
     price: number;
     description: string;
@@ -9,19 +10,27 @@ interface ICreateProduct {
     stock: number;
 };
 
-class CreateProductService {
-    async execute(user_id, { name, price, description, banner, category_id, stock }: ICreateProduct) {
+class UpdateProductService {
+    async execute(user_id, { id, name, price, description, banner, category_id, stock }: IUpdateProduct) {
+
         const isAdmin = await prismaClient.prismaClient.user.findFirst({
             where: {
                 id: user_id
             }
         });
 
-        console.log(isAdmin.role);
-        
-
         if (isAdmin.role !== 'admin') {
-            throw new Error('Operação não autorizada!');
+            throw new Error('Operação não autorizada');
+        };
+
+        const productExists = await prismaClient.prismaClient.product.findFirst({
+            where: {
+                id
+            }
+        });
+
+        if (!productExists) {
+            throw new Error('Produto não existe');
         };
 
         if (!name) {
@@ -48,7 +57,10 @@ class CreateProductService {
             throw new Error('Quantidade obrigatória');
         };
 
-        const product = await prismaClient.prismaClient.product.create({
+        const product = await prismaClient.prismaClient.product.update({
+            where: {
+                id
+            },
             data: {
                 name,
                 price,
@@ -56,11 +68,19 @@ class CreateProductService {
                 banner,
                 category_id,
                 stock
+            },
+            select: {
+                name: true,
+                price: true,
+                description: true,
+                banner: true,
+                category_id: true,
+                stock: true
             }
         });
-
         return product;
-    };
+
+    }
 };
 
-export { CreateProductService };
+export { UpdateProductService };

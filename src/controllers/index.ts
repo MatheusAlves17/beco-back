@@ -23,6 +23,7 @@ import { DeleteCategoryController } from "./category/DeleteCategoryController";
 import { SelectAllCategoriesController } from "./category/SelectAllCategoriesController";
 
 import { CreateProductController } from "./product/CreateProductController";
+import { UpdateProductController } from "./product/UpdateProductController";
 
 export {
     AuthUserController,
@@ -57,5 +58,6 @@ export {
 };
 
 export {
-    CreateProductController
+    CreateProductController,
+    UpdateProductController
 };
