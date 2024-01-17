@@ -24,8 +24,9 @@ import { SelectAllCategoriesService } from "./category/SelectAllCategoriesServic
 
 import { CreateProductService } from "./product/CreateProductService";
 import { UpdateProductService } from "./product/UpdateProductService";
+import { DeleteProductService } from "./product/DeleteProductService";
 import { SelectProductService  } from "./product/SelectProductService";
-import { SelectProductsService  } from "./product/SelectProductsService";
+import { SelectProductsService } from "./product/SelectProductsService";
 
 export {
     AuthUserService,
@@ -62,6 +63,7 @@ export {
 export {
     CreateProductService,
     UpdateProductService,
+    DeleteProductService,
     SelectProductService,
     SelectProductsService 
 };

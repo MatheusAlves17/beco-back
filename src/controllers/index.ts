@@ -24,8 +24,10 @@ import { SelectAllCategoriesController } from "./category/SelectAllCategoriesCon
 
 import { CreateProductController } from "./product/CreateProductController";
 import { UpdateProductController } from "./product/UpdateProductController";
+import { DeleteProductController } from "./product/DeleteProductController";
 import { SelectProductController } from "./product/SelectProductController";
 import { SelectProductsController } from "./product/SelectProductsController";
+
 
 export {
     AuthUserController,
@@ -62,6 +64,7 @@ export {
 export {
     CreateProductController,
     UpdateProductController,
+    DeleteProductController,
     SelectProductController,
     SelectProductsController,
 };
