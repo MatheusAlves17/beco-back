@@ -1,7 +1,7 @@
 import prismaClient from '../../prisma';
 
 class SelectStatusService {
-    async execute(user_id: string) {
+    async execute(user_id: string, status_id: string) {
         const isAdmin = await prismaClient.prismaClient.user.findFirst({
             where: {
                 id: user_id
@@ -12,12 +12,19 @@ class SelectStatusService {
             throw new Error('Operação não autorizada');
         };
         
-        const status = await prismaClient.prismaClient.status.findMany({
+        const status = await prismaClient.prismaClient.status.findFirst({
+            where:{
+                id: status_id
+            },
             select: {
                 id: true,
                 name: true
             }
         });
+
+        if (!status) {
+            throw new Error('Status não encontrado');
+        };
 
         return status;
     }
