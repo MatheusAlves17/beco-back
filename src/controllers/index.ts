@@ -28,6 +28,8 @@ import { DeleteProductController } from "./product/DeleteProductController";
 import { SelectProductController } from "./product/SelectProductController";
 import { SelectProductsController } from "./product/SelectProductsController";
 
+import { CreateStatusController } from "./status/CreateStatusController";
+
 
 export {
     AuthUserController,
@@ -67,4 +69,8 @@ export {
     DeleteProductController,
     SelectProductController,
     SelectProductsController,
+};
+
+export {
+    CreateStatusController
 };
