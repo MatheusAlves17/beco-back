@@ -32,6 +32,7 @@ import { CreateStatusController } from "./status/CreateStatusController";
 import { UpdateStatusController } from "./status/UpdateStatusController";
 import { DeleteStatusController } from "./status/DeleteStatusController";
 import { SelectStatusController } from "./status/SelectStatusController";
+import { SelectAllStatusController } from "./status/SelectAllStatusController";
 
 
 export {
@@ -78,5 +79,6 @@ export {
     CreateStatusController,
     UpdateStatusController,
     DeleteStatusController,
-    SelectStatusController
+    SelectStatusController,
+    SelectAllStatusController
 };

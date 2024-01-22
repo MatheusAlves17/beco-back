@@ -32,6 +32,7 @@ import { CreateStatusService } from "./status/CreateStatusService";
 import { UpdateStatusService } from "./status/UpdateStatusService";
 import { DeleteStatusService } from "./status/DeleteStatusService";
 import { SelectStatusService } from "./status/SelectStatusService";
+import { SelectAllStatusService } from "./status/SelectAllStatusService";
 
 export {
     AuthUserService,
@@ -77,5 +78,6 @@ export {
     CreateStatusService,
     UpdateStatusService,
     DeleteStatusService,
-    SelectStatusService
+    SelectStatusService,
+    SelectAllStatusService
 };
