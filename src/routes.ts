@@ -32,7 +32,9 @@ import {
     SelectProductController,
     SelectProductsController,
 
-    CreateStatusController
+    CreateStatusController,
+    UpdateStatusController,
+    DeleteStatusController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -73,5 +75,7 @@ router.put('/product', isAuthenticated, upload.single('file'), new UpdateProduct
 router.delete('/product', isAuthenticated, new DeleteProductController().handle);
 
 router.post('/status', isAuthenticated, new CreateStatusController().handle);
+router.put('/status', isAuthenticated, new UpdateStatusController().handle);
+router.delete('/status', isAuthenticated, new DeleteStatusController().handle);
 
 export { router };

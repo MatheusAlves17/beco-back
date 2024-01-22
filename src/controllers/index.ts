@@ -29,6 +29,8 @@ import { SelectProductController } from "./product/SelectProductController";
 import { SelectProductsController } from "./product/SelectProductsController";
 
 import { CreateStatusController } from "./status/CreateStatusController";
+import { UpdateStatusController } from "./status/UpdateStatusController";
+import { DeleteStatusController } from "./status/DeleteStatusController";
 
 
 export {
@@ -72,5 +74,7 @@ export {
 };
 
 export {
-    CreateStatusController
+    CreateStatusController,
+    UpdateStatusController,
+    DeleteStatusController,
 };

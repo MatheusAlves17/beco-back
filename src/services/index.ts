@@ -29,6 +29,8 @@ import { SelectProductService } from "./product/SelectProductService";
 import { SelectProductsService } from "./product/SelectProductsService";
 
 import { CreateStatusService } from "./status/CreateStatusService";
+import { UpdateStatusService } from "./status/UpdateStatusService";
+import { DeleteStatusService } from "./status/DeleteStatusService";
 
 export {
     AuthUserService,
@@ -71,5 +73,7 @@ export {
 };
 
 export {
-    CreateStatusService
+    CreateStatusService,
+    UpdateStatusService,
+    DeleteStatusService
 };
