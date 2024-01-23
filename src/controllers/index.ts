@@ -37,6 +37,7 @@ import { CreateOrderController } from "./orders/CreateOrderController";
 import { UpdateOrderController } from "./orders/UpdateOrderController";
 import { SelectAllOrdersController } from "./orders/SelectAllOrdersController";
 import { SelectOrderController } from "./orders/SelectOrderController";
+import { CreateItemController } from "./item/CreateItemController";
 
 
 export {
@@ -92,4 +93,8 @@ export{
     UpdateOrderController,
     SelectOrderController,
     SelectAllOrdersController
+};
+
+export {
+    CreateItemController,
 };

@@ -123,6 +123,7 @@ model Order {
 
 model Item {
   id String @id @default(uuid())
+  value_total Decimal
   
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
@@ -135,6 +136,9 @@ model Item {
   
   product Product @relation(fields: [product_id], references: [id])
   product_id String
+
+  status Status @relation(fields: [status_id], references: [id])
+  status_id String
 }
 
 model Status {
@@ -142,7 +146,9 @@ model Status {
   name String
 
   @@map("status")
+  
   order Order[]
+  item Item[]
 }
 
 model Payment {

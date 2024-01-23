@@ -41,11 +41,14 @@ import {
     CreateOrderController,
     UpdateOrderController,
     SelectAllOrdersController,
-    SelectOrderController
+    SelectOrderController,
+
+    CreateItemController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { UpdateItemController } from './controllers/item/UpdateItemController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
@@ -91,5 +94,8 @@ router.put('/order', isAuthenticated, new UpdateOrderController().handle);
 router.post('/order', isAuthenticated, new CreateOrderController().handle);
 router.get('/order/one', isAuthenticated, new SelectOrderController().handle);
 router.get('/order/all', isAuthenticated, new SelectAllOrdersController().handle);
+
+router.post('/item', isAuthenticated, new CreateItemController().handle);
+router.put('/item', isAuthenticated, new UpdateItemController().handle);
 
 export { router };
