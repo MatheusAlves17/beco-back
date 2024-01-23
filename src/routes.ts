@@ -40,7 +40,8 @@ import {
     
     CreateOrderController,
     UpdateOrderController,
-    SelectAllOrdersController
+    SelectAllOrdersController,
+    SelectOrderController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -76,18 +77,19 @@ router.delete('/category/delete', isAuthenticated, new DeleteCategoryController(
 
 router.get('/product/one', new SelectProductController().handle);
 router.get('/product/all', new SelectProductsController().handle);
+router.delete('/product', isAuthenticated, new DeleteProductController().handle);
 router.post('/product', isAuthenticated, upload.single('file'), new CreateProductController().handle);
 router.put('/product', isAuthenticated, upload.single('file'), new UpdateProductController().handle);
-router.delete('/product', isAuthenticated, new DeleteProductController().handle);
 
-router.post('/status', isAuthenticated, new CreateStatusController().handle);
 router.put('/status', isAuthenticated, new UpdateStatusController().handle);
+router.post('/status', isAuthenticated, new CreateStatusController().handle);
 router.delete('/status', isAuthenticated, new DeleteStatusController().handle);
-router.get('/status/all', isAuthenticated, new SelectAllStatusController().handle);
 router.get('/status/one', isAuthenticated, new SelectStatusController().handle);
+router.get('/status/all', isAuthenticated, new SelectAllStatusController().handle);
 
-router.post('/order', isAuthenticated, new CreateOrderController().handle);
 router.put('/order', isAuthenticated, new UpdateOrderController().handle);
+router.post('/order', isAuthenticated, new CreateOrderController().handle);
+router.get('/order/one', isAuthenticated, new SelectOrderController().handle);
 router.get('/order/all', isAuthenticated, new SelectAllOrdersController().handle);
 
 export { router };
