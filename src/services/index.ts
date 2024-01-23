@@ -36,6 +36,7 @@ import { SelectAllStatusService } from "./status/SelectAllStatusService";
 
 import { CreateOrderService } from "./orders/CreateOrderService";
 import { UpdateOrderService } from "./orders/UpdateOrderService";
+import { SelectAllOrdersService } from "./orders/SelectAllOrdersService";
 
 export {
     AuthUserService,
@@ -87,5 +88,6 @@ export {
 
 export {
     CreateOrderService,
-    UpdateOrderService
+    UpdateOrderService,
+    SelectAllOrdersService
 };
