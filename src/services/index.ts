@@ -34,6 +34,8 @@ import { DeleteStatusService } from "./status/DeleteStatusService";
 import { SelectStatusService } from "./status/SelectStatusService";
 import { SelectAllStatusService } from "./status/SelectAllStatusService";
 
+import { CreateOrderService } from "./orders/CreateOrderService";
+
 export {
     AuthUserService,
     CreateUserService,
@@ -80,4 +82,8 @@ export {
     DeleteStatusService,
     SelectStatusService,
     SelectAllStatusService
+};
+
+export {
+    CreateOrderService
 };

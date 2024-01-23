@@ -36,7 +36,8 @@ import {
     UpdateStatusController,
     DeleteStatusController,
     SelectStatusController,
-    SelectAllStatusController
+    SelectAllStatusController,
+    CreateOrderController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -81,5 +82,7 @@ router.put('/status', isAuthenticated, new UpdateStatusController().handle);
 router.delete('/status', isAuthenticated, new DeleteStatusController().handle);
 router.get('/status/all', isAuthenticated, new SelectAllStatusController().handle);
 router.get('/status/one', isAuthenticated, new SelectStatusController().handle);
+
+router.post('/order', isAuthenticated, new CreateOrderController().handle);
 
 export { router };

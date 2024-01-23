@@ -33,6 +33,7 @@ import { UpdateStatusController } from "./status/UpdateStatusController";
 import { DeleteStatusController } from "./status/DeleteStatusController";
 import { SelectStatusController } from "./status/SelectStatusController";
 import { SelectAllStatusController } from "./status/SelectAllStatusController";
+import { CreateOrderController } from "./orders/CreateOrderController";
 
 
 export {
@@ -81,4 +82,8 @@ export {
     DeleteStatusController,
     SelectStatusController,
     SelectAllStatusController
+};
+
+export{
+    CreateOrderController
 };
