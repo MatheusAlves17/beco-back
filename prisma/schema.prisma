@@ -123,7 +123,6 @@ model Order {
 
 model Item {
   id String @id @default(uuid())
-  value_total Decimal
   
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())

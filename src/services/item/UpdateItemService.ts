@@ -2,7 +2,6 @@ import { Prisma } from '@prisma/client';
 import prismaClient from '../../prisma';
 
 interface IUpdateItem {
-    order_id?: string;
     item_id: string;
     status_id: string;
 };
@@ -24,8 +23,7 @@ class UpdateItemService {
                 ...updates.reduce((acc, update) => ({ ...acc, ...update.data }), {}),
             },
             where: {
-                // Combina todos os objetos where dos itens em um objeto
-                OR: updates.map(update => ({ ...update.where })),
+                OR: updates.map(update => ({ id: update.where.id })),
             },
         });
 
