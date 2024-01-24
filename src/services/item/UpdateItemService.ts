@@ -1,27 +1,24 @@
 import prismaClient from '../../prisma';
 interface IUpdateItem {
   item_id: string;
-  status_id: string;
 };
 class UpdateItemService {
-  async execute(items: IUpdateItem[]) {
-    let itemsToReturn = [];
+  async execute(status_id: string, items: string[]) {
 
-    for (let i = 0; i < items.length; i++) {
-      const updatedItem = await prismaClient.prismaClient.item.updateMany({
-        where: {
-          id: items[i].item_id,
+    const updatedItems = await prismaClient.prismaClient.item.updateMany({
+      where: {
+        id: {
+          in: items
         },
-        data: {
-          status_id: items[i].status_id,
-        },
-      });
+      },
+      data: {
+        status_id,
+      },
+    });
 
-      itemsToReturn.push(updatedItem);
-    }
-
-    return itemsToReturn;
+    return updatedItems;
   }
+
 };
 
 export { UpdateItemService };
