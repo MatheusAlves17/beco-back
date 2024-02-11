@@ -38,9 +38,12 @@ import { CreateOrderService } from "./orders/CreateOrderService";
 import { UpdateOrderService } from "./orders/UpdateOrderService";
 import { SelectAllOrdersService } from "./orders/SelectAllOrdersService";
 import { SelectOrderService } from "./orders/SelectOrderService";
+
 import { CreateItemService } from "./item/CreateItemService";
+
 import { CreateCouponService } from "./coupon/CreateCouponService";
 import { UpdateCouponService } from "./coupon/UpdateCouponService";
+import { SelectMyCouponsService } from "./coupon/SelectMyCouponsService";
 
 export {
     AuthUserService,
@@ -103,5 +106,6 @@ export {
 
 export {
     CreateCouponService,
-    UpdateCouponService
+    UpdateCouponService,
+    SelectMyCouponsService,
 };

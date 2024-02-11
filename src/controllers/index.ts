@@ -42,6 +42,7 @@ import { CreateItemController } from "./item/CreateItemController";
 
 import { CreateCouponController } from "./coupon/CreateCouponController"
 import { UpdateCouponController } from "./coupon/UpdateCouponController";
+import { SelectMyCouponsController } from "./coupon/SelectMyCouponsController";
 
 
 export {
@@ -106,5 +107,6 @@ export {
 
 export {
     CreateCouponController,
-    UpdateCouponController
+    UpdateCouponController,
+    SelectMyCouponsController
 };
