@@ -47,7 +47,8 @@ import {
 
     CreateCouponController,
     UpdateCouponController,
-    SelectMyCouponsController
+    SelectMyCouponsController,
+    SelectValidCouponsController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -105,6 +106,7 @@ router.put('/item', isAuthenticated, new UpdateItemController().handle);
 
 router.post('/coupon', isAuthenticated, new CreateCouponController().handle);
 router.put('/coupon', isAuthenticated, new UpdateCouponController().handle);
-router.get('/my-coupons', isAuthenticated, new SelectMyCouponsController().handle);
+router.get('/all-my-coupons', isAuthenticated, new SelectMyCouponsController().handle);
+router.get('/my-coupons', isAuthenticated, new SelectValidCouponsController().handle);
 
 export { router };

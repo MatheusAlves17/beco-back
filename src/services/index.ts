@@ -44,6 +44,7 @@ import { CreateItemService } from "./item/CreateItemService";
 import { CreateCouponService } from "./coupon/CreateCouponService";
 import { UpdateCouponService } from "./coupon/UpdateCouponService";
 import { SelectMyCouponsService } from "./coupon/SelectMyCouponsService";
+import { SelectValidCouponsService } from "./coupon/SelectValidCouponsService";
 
 export {
     AuthUserService,
@@ -108,4 +109,5 @@ export {
     CreateCouponService,
     UpdateCouponService,
     SelectMyCouponsService,
+    SelectValidCouponsService
 };
