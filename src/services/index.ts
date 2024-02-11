@@ -40,6 +40,7 @@ import { SelectAllOrdersService } from "./orders/SelectAllOrdersService";
 import { SelectOrderService } from "./orders/SelectOrderService";
 import { CreateItemService } from "./item/CreateItemService";
 import { CreateCouponService } from "./coupon/CreateCouponService";
+import { UpdateCouponService } from "./coupon/UpdateCouponService";
 
 export {
     AuthUserService,
@@ -101,5 +102,6 @@ export {
 };
 
 export {
-    CreateCouponService
+    CreateCouponService,
+    UpdateCouponService
 };

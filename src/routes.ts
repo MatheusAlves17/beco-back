@@ -44,7 +44,8 @@ import {
     SelectOrderController,
 
     CreateItemController,
-    CreateCouponController
+    CreateCouponController,
+    UpdateCouponController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -101,5 +102,6 @@ router.put('/item', isAuthenticated, new UpdateItemController().handle);
 
 
 router.post('/coupon', isAuthenticated, new CreateCouponController().handle);
+router.put('/coupon', isAuthenticated, new UpdateCouponController().handle);
 
 export { router };

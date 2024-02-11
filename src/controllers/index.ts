@@ -37,8 +37,11 @@ import { CreateOrderController } from "./orders/CreateOrderController";
 import { UpdateOrderController } from "./orders/UpdateOrderController";
 import { SelectAllOrdersController } from "./orders/SelectAllOrdersController";
 import { SelectOrderController } from "./orders/SelectOrderController";
+
 import { CreateItemController } from "./item/CreateItemController";
-import { CreateCouponController } from "./coupon/CreateCouponController";
+
+import { CreateCouponController } from "./coupon/CreateCouponController"
+import { UpdateCouponController } from "./coupon/UpdateCouponController";
 
 
 export {
@@ -102,5 +105,6 @@ export {
 
 
 export {
-    CreateCouponController
+    CreateCouponController,
+    UpdateCouponController
 };
