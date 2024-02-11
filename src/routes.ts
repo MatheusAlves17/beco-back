@@ -43,7 +43,8 @@ import {
     SelectAllOrdersController,
     SelectOrderController,
 
-    CreateItemController
+    CreateItemController,
+    CreateCouponController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -95,7 +96,10 @@ router.post('/order', isAuthenticated, new CreateOrderController().handle);
 router.get('/order/one', isAuthenticated, new SelectOrderController().handle);
 router.get('/order/all', isAuthenticated, new SelectAllOrdersController().handle);
 
-router.post('/item', isAuthenticated, new CreateItemController().handle);
+router.post('/item', isAuthenticated,upload.single('file'), new CreateItemController().handle);
 router.put('/item', isAuthenticated, new UpdateItemController().handle);
+
+
+router.get('/coupon', isAuthenticated, new CreateCouponController().handle);
 
 export { router };

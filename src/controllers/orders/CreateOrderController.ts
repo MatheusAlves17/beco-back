@@ -4,11 +4,11 @@ import { CreateOrderService } from "../../services";
 class CreateOrderController {
     async handle(req: Request, res: Response) {
         const user_id = req.user_id;
-        const { shipping, value_total, status_id, address_id } = req.body;
+        const { delivery, value_total, status_id, address_id } = req.body;
 
         const createOrderService = new CreateOrderService();
         const order = await createOrderService.execute({
-            shipping,
+            delivery,
             value_total,
             status_id,
             user_id,
@@ -16,7 +16,7 @@ class CreateOrderController {
         });
 
         return res.json(order);
-    };
+    }; 
 };
 
 export { CreateOrderController };

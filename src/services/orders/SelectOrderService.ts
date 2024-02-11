@@ -8,7 +8,7 @@ class SelectOrderService {
             },
             select: {
                 id: true,
-                shipping: true,
+                delivery: true,
                 value_total: true,
                 created_at: true,
                 status: true,

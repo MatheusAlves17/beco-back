@@ -27,6 +27,7 @@ class CreateCategoryService {
                     name: true,
                 }
             });
+ 
             return category;
         } else {
             throw new Error('Operação não autorizada!');

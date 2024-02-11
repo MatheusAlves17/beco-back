@@ -16,7 +16,7 @@ class UpdateOrderService {
             },
             select: {
                 id: true,
-                shipping: true,
+                delivery: true,
                 value_total: true,
                 status_id: true,
                 address_id: true,

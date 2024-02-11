@@ -27,6 +27,7 @@ model User {
   address Address[]
   card Card[]
   order Order[]
+  item Item[]
   coupon Coupon[]
 
 }
@@ -68,16 +69,6 @@ model Card {
   payment Payment[]
 }
 
-model Category{
-  id String @id @default(uuid())
-  name String
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
-
-  @@map("categories")
-  product Product[]
-}
 
 model Product {
   id String @id @default(uuid())
@@ -92,15 +83,16 @@ model Product {
 
   @@map("products")
   
-  category_id String
-  category Category @relation(fields: [category_id], references: [id])
   items Item[]
+  
+  category Category @relation(fields: [category_id], references: [id])
+  category_id String
 }
 
 model Order {
   id String @id @default(uuid())
   
-  shipping Decimal
+  delivery Decimal
   value_total Decimal
 
   created_at DateTime? @default(now())
@@ -123,7 +115,10 @@ model Order {
 
 model Item {
   id String @id @default(uuid())
-  
+  price Decimal
+  name String
+  banner String
+
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
   
@@ -138,6 +133,9 @@ model Item {
 
   status Status @relation(fields: [status_id], references: [id])
   status_id String
+
+  user User @relation(fields: [user_id], references: [id])
+  user_id String
 }
 
 model Status {
@@ -150,8 +148,21 @@ model Status {
   item Item[]
 }
 
+model Category {
+  id String @id @default(uuid())
+  name String
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("category")
+
+  product Product[] 
+}
+
 model Payment {
   id String @id @default(uuid())
+  valueTotal Decimal
   
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
@@ -170,6 +181,8 @@ model Payment {
 model Coupon {
   id String @id @default(uuid())
   value Decimal
+  isUsed Boolean @default(false)
+
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())

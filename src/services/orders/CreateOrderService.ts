@@ -1,7 +1,7 @@
 import prismaClient from '../../prisma';
 
 interface ICreateOrderService {
-    shipping: number;
+    delivery: number;
     value_total: number;
     status_id: string;
     user_id: string;
@@ -10,13 +10,13 @@ interface ICreateOrderService {
 
 class CreateOrderService {
     async execute({
-        shipping,
+        delivery,
         value_total,
         status_id,
         user_id,
         address_id
     }: ICreateOrderService) {
-        if (!shipping) {
+        if (!delivery) {
             throw new Error('Frete obrigatório');
         };
 
@@ -34,7 +34,7 @@ class CreateOrderService {
 
         const order = await prismaClient.prismaClient.order.create({
             data: {
-                shipping,
+                delivery,
                 value_total,
                 status_id,
                 user_id,
@@ -42,7 +42,7 @@ class CreateOrderService {
             },
             select: {
                 id: true,
-                shipping: true,
+                delivery: true,
                 value_total: true,
                 status_id: true,
                 user_id: true,

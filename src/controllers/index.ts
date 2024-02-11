@@ -38,6 +38,7 @@ import { UpdateOrderController } from "./orders/UpdateOrderController";
 import { SelectAllOrdersController } from "./orders/SelectAllOrdersController";
 import { SelectOrderController } from "./orders/SelectOrderController";
 import { CreateItemController } from "./item/CreateItemController";
+import { CreateCouponController } from "./coupon/CreateCouponController";
 
 
 export {
@@ -88,7 +89,7 @@ export {
     SelectAllStatusController
 };
 
-export{
+export {
     CreateOrderController,
     UpdateOrderController,
     SelectOrderController,
@@ -97,4 +98,9 @@ export{
 
 export {
     CreateItemController,
+};
+
+
+export {
+    CreateCouponController
 };

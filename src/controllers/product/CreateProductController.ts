@@ -6,22 +6,27 @@ class CreateProductController {
     async handle(req: Request, res: Response) {
         const user_id = req.user_id;
         const { name, price, description, banner, category_id, stock } = req.body;
-        const { filename } = req.file;
 
-        const createProductService = new CreateProductService();
-        const product = await createProductService.execute(
-            user_id,
-            {
-                name,
-                price,
-                description,
-                banner: filename,
-                category_id,
-                stock: parseInt(stock)
-            }
-        );
 
-        return res.json(product);
+        if (!req.file) {
+            throw new Error("Falha ao enviar foto do produto")
+        } else {
+            const { filename } = req.file;
+            const createProductService = new CreateProductService();
+            const product = await createProductService.execute(
+                user_id,
+                {
+                    name,
+                    price,
+                    description,
+                    banner: filename,
+                    category_id,
+                    stock: parseInt(stock)
+                }
+            );
+
+            return res.json(product);
+        }
 
     }
 };
