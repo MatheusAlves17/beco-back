@@ -11,6 +11,8 @@ import { IDeleteCard } from "./card/DeleteCard";
 import { IAddress } from "./address/Address";
 import { IUploadAddress } from "./address/UploadAddress";
 
+import { CreateCoupon } from './coupon/CreateCoupon';
+
 export {
     IUser,
     ILogin,
@@ -28,4 +30,9 @@ export {
 export {
     IAddress,
     IUploadAddress
+};
+
+
+export {
+    CreateCoupon
 };

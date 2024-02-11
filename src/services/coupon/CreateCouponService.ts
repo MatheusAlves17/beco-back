@@ -1,41 +1,50 @@
+import { CreateCoupon } from '../../interfaces';
 import prismaClient from '../../prisma';
 
+
+
 class CreateCouponService {
-    async execute() {
-
-        const status = await prismaClient.prismaClient.status.findFirst({
-            where: {
-                name: 'Devolvido'
-            }
-        });
-
-
-
-        const items = await prismaClient.prismaClient.item.findMany({
-            where: {
-                status_id: status.id
-            }
-        });
-
-        const itemsId = items.map(item => item.product_id);
-
-        const products = await prismaClient.prismaClient.product.findMany({
+    async execute({ user_id, value, client_id }: CreateCoupon) {
+        
+        if(!user_id){
+            throw new Error('Usuário obrigatório');
+        }
+        
+        const isAdmin = await prismaClient.prismaClient.user.findFirst({
             where:{
-                id: {
-                    in: itemsId
-                }
+                id: user_id
             }
         });
 
-        const prices = products.map(product => product.price);
-        const valueCoupon = parseInt(prices.reduce((acc: any, num: any) => acc + num, 0));
+        if(isAdmin.role !== 'admin'){
+            throw new Error('Operação não autorizada');
+        }
 
+        if(!client_id){
+            throw new Error('Usuário obrigatório');
+        }
+        
+        if(!value){
+            throw new Error('Valor obrigatório');
+        }
 
-        // console.log(products);
-        // console.log(valueCoupon);
+        if(value < 10){
+            throw new Error('Valor não pode ser menor que R$ 10');
+        }
 
-        return items;
+        const coupon = await prismaClient.prismaClient.coupon.create({
+            data:{
+                value,
+                user_id: client_id
+            },
+            select:{
+                id: true,
+                value: true,
+                user_id: true,
+            }
+        })
 
+        return coupon;
     };
 };
 

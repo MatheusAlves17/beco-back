@@ -100,6 +100,6 @@ router.post('/item', isAuthenticated,upload.single('file'), new CreateItemContro
 router.put('/item', isAuthenticated, new UpdateItemController().handle);
 
 
-router.get('/coupon', isAuthenticated, new CreateCouponController().handle);
+router.post('/coupon', isAuthenticated, new CreateCouponController().handle);
 
 export { router };
