@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Request, Response, Router } from 'express';
 import multer from 'multer';
 
 import {
@@ -37,7 +37,7 @@ import {
     DeleteStatusController,
     SelectStatusController,
     SelectAllStatusController,
-    
+
     CreateOrderController,
     UpdateOrderController,
     SelectAllOrdersController,
@@ -58,8 +58,11 @@ import { UpdateItemController } from './controllers/item/UpdateItemController';
 const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
 
+router.get('/', (req: Request, res: Response) => res.send('PROJETINHO TÁ ON!'))
 
-router.post('/user', upload.single('file'), new CreateUserController().handle);
+
+// router.post('/user', upload.single('file'), new CreateUserController().handle);
+router.post('/user', new CreateUserController().handle);
 router.post('/user/session', new AuthUserController().handle);
 router.put('/user/update', isAuthenticated, new UpdateUserController().handle);
 router.get('/user/details', isAuthenticated, new DetailsUserController().handle);
@@ -100,7 +103,7 @@ router.post('/order', isAuthenticated, new CreateOrderController().handle);
 router.get('/order/one', isAuthenticated, new SelectOrderController().handle);
 router.get('/order/all', isAuthenticated, new SelectAllOrdersController().handle);
 
-router.post('/item', isAuthenticated,upload.single('file'), new CreateItemController().handle);
+router.post('/item', isAuthenticated, upload.single('file'), new CreateItemController().handle);
 router.put('/item', isAuthenticated, new UpdateItemController().handle);
 
 

@@ -15,6 +15,7 @@ model User {
   name String
   cpf String
   phone String
+  birth String
   email String
   password String
   picture String

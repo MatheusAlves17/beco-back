@@ -4,7 +4,7 @@ import { hash } from 'bcryptjs';
 import { IUser } from "../../interfaces";
 
 class CreateUserService {
-    async execute({ name, cpf, phone, email, password, role, picture }: IUser) {
+    async execute({ name, cpf, phone,birth, email, password, role, picture }: IUser) {
         if(!name){
             throw new Error('Nome é obrigatório');
         }
@@ -17,6 +17,10 @@ class CreateUserService {
             throw new Error('Celular é obrigatório');
         }
 
+        if(!birth){
+            throw new Error('Data de nascimento é obrigatória');
+        }
+
         if(!email){
             throw new Error('E-mail é obrigatório');
         }
@@ -24,6 +28,7 @@ class CreateUserService {
         if(!password){
             throw new Error('Senha é obrigatória');
         }
+
 
         const cpfAlreadyExists = await prismaClient.prismaClient.user.findFirst({
             where:{
@@ -52,6 +57,7 @@ class CreateUserService {
                 name,
                 cpf,
                 phone,
+                birth,
                 email,
                 password: passwordHash,
                 role,
@@ -62,6 +68,7 @@ class CreateUserService {
                 name: true,
                 cpf: true,
                 phone: true,
+                birth: true,
                 email: true,
                 picture: true
             }
