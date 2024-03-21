@@ -5,10 +5,10 @@ class CreateUserController {
     async handle(req: Request, res: Response) {
         const { name, cpf, phone, birth, email, password, role } = req.body;
 
-        // if (!req.file) {
-            // throw new Error("Falha ao enviar foto do produto")
-        // } else {
-            // const { filename } = req.file;
+        if (!req.file) {
+            throw new Error("Falha ao enviar foto do produto")
+        } else {
+            const { filename } = req.file;
 
             const createUserService = new CreateUserService();
             const user = await createUserService.execute({
@@ -23,7 +23,7 @@ class CreateUserController {
             });
 
             return res.json(user);
-        // };
+        };
     };
 };
 
