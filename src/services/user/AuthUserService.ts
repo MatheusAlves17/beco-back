@@ -47,7 +47,7 @@ class AuthUserService {
             name: user.name,
             cpf: user.cpf,
             phone: user.phone,
-            picture: user.picture,
+            // picture: user.picture,
             role: user.role,
             token,
         };
