@@ -62,7 +62,7 @@ router.get('/', (req: Request, res: Response) => res.send('PROJETINHO TÁ ON! te
 
 
 // router.post('/user', upload.single('file'), new CreateUserController().handle);
-router.post('/user', new CreateUserController().handle);
+router.post('/user/signup', new CreateUserController().handle);
 router.post('/user/session', new AuthUserController().handle);
 router.put('/user/update', isAuthenticated, new UpdateUserController().handle);
 router.get('/user/details', isAuthenticated, new DetailsUserController().handle);
