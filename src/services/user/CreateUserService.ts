@@ -4,7 +4,7 @@ import { hash } from 'bcryptjs';
 import { IUser } from "../../interfaces";
 
 class CreateUserService {
-    async execute({ name, cpf, phone,birth, email, password, role, picture }: IUser) {
+    async execute({ name, cpf, phone, birth, email, password, role }: IUser) {
         if(!name){
             throw new Error('Nome é obrigatório');
         }
@@ -61,7 +61,7 @@ class CreateUserService {
                 email,
                 password: passwordHash,
                 role,
-                picture
+                // picture
             },
             select:{
                 id: true,
@@ -70,7 +70,7 @@ class CreateUserService {
                 phone: true,
                 birth: true,
                 email: true,
-                picture: true
+                // picture: true
             }
         });
 
