@@ -49,6 +49,7 @@ class AuthUserService {
             phone: user.phone,
             // picture: user.picture,
             role: user.role,
+            email: user.email,
             token,
         };
 
