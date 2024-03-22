@@ -58,7 +58,7 @@ import { UpdateItemController } from './controllers/item/UpdateItemController';
 const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
 
-router.get('/', (req: Request, res: Response) => res.send('PROJETINHO TÁ ON! teste'))
+router.get('/', (req: Request, res: Response) => res.send('PROJETINHO TÁ AFIADO!'))
 
 
 // router.post('/user', upload.single('file'), new CreateUserController().handle);
