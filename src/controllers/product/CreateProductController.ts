@@ -5,7 +5,7 @@ import { CreateProductService } from "../../services";
 class CreateProductController {
     async handle(req: Request, res: Response) {
         const user_id = req.user_id;
-        const { name, price, description, banner, category_id, stock } = req.body;
+        const { name, price, description, category_id, stock } = req.body;
 
 
         if (!req.file) {
