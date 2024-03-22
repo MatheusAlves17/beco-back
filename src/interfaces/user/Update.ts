@@ -5,3 +5,10 @@ export interface IUpdateUser {
     email?: string;
     cpf?: string;
 };
+
+export interface IUpdatePassword{
+    currentPassword: string;
+     newPassword: string;
+     confirmNewPassword: string;
+     user_id: string;
+}

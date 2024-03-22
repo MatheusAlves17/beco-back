@@ -7,6 +7,7 @@ import {
     UpdateUserController,
     DeleteUserController,
     DetailsUserController,
+    UpdatePasswordController,
 
     CreateCardController,
     DeleteCardController,
@@ -65,6 +66,7 @@ router.get('/', (req: Request, res: Response) => res.send('PROJETINHO TÁ AFIADO
 router.post('/user/signup', new CreateUserController().handle);
 router.post('/user/session', new AuthUserController().handle);
 router.put('/user/update', isAuthenticated, new UpdateUserController().handle);
+router.put('/user/update/password', isAuthenticated, new UpdatePasswordController().handle);
 router.get('/user/details', isAuthenticated, new DetailsUserController().handle);
 router.delete('/user/delete', isAuthenticated, new DeleteUserController().handle);
 

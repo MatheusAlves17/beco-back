@@ -3,6 +3,7 @@ import { CreateUserController } from "./user/CreateUserController";
 import { UpdateUserController } from "./user/UpdateUserController";
 import { DeleteUserController } from "./user/DeleteUserController";
 import { DetailsUserController } from "./user/DetailsUserController";
+import { UpdatePasswordController } from "./user/UpdatePasswordController";
 
 import { CreateCardController } from "./card/CreateCardController";
 import { DeleteCardController } from "./card/DeleteCardController";
@@ -51,7 +52,8 @@ export {
     CreateUserController,
     UpdateUserController,
     DeleteUserController,
-    DetailsUserController
+    DetailsUserController,
+    UpdatePasswordController
 };
 
 export {
