@@ -12,7 +12,7 @@ class DetailsUserService {
                 cpf: true,
                 phone: true,
                 email: true,
-                picture: true,
+                // picture: true,
             }
         });
         return user;
