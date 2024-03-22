@@ -6,11 +6,11 @@ class UpdateUserController {
     async handle(req: Request, res: Response) {
         const user_id = req.user_id;
 
-        const { name, phone, picture } = req.body as IUpdateUser;
+        const { name, phone } = req.body as IUpdateUser;
 
         const updateUserService = new UpdateUserService();
 
-        const update = await updateUserService.execute({user_id, name, phone, picture});
+        const update = await updateUserService.execute({user_id, name, phone});
 
         return res.json(update)
     }

@@ -2,7 +2,7 @@ import prismaClient from '../../prisma';
 import { IUpdateUser } from '../../interfaces';
 
 class UpdateUserService {
-    async execute({ user_id, name, phone, picture }: IUpdateUser) {
+    async execute({ user_id, name, phone }: IUpdateUser) {
         if (!user_id) {
             throw new Error('Usuário inválido!');
         };
@@ -22,12 +22,10 @@ class UpdateUserService {
             data:{
                 name,
                 phone,
-                picture
             },
             select:{
                 name: true,
                 phone: true,
-                picture: true
             }
         })
 
