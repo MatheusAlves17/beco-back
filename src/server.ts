@@ -9,9 +9,10 @@ const app = express();
 app.use(express.json());
 app.use(router);
 
-app.use('/files/',express.static('tmp'));
 
-app.use(cors({credentials: true}));
+app.use(cors({ credentials: true }));
+
+app.use('/files', express.static('tmp'));
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
@@ -31,5 +32,5 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     });
 });
 
-app.listen({host: '0.0.0.0', port: process.env.PORT && Number(process.env.PORT)  || 3333}, () => console.log('Server tá on'));
+app.listen({ host: '0.0.0.0', port: process.env.PORT && Number(process.env.PORT) || 3333 }, () => console.log('Server tá on'));
 
