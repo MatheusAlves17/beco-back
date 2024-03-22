@@ -11,6 +11,7 @@ class SelectProductService {
                 name: true,
                 price: true,
                 stock: true,
+                description: true,
                 category: true,
                 banner: true,
             }
