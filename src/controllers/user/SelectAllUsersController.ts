@@ -3,11 +3,11 @@ import { SelectAllUsersService } from "../../services";
 
 class SelectAllUsersController {
     async handle(req: Request, res: Response) {
-        const user_id = req.user_id;
+        const isAdmin = req.query.isAdmin as string;
 
         const selectAllUsersService = new SelectAllUsersService();
 
-        const users = await selectAllUsersService.execute(user_id);
+        const users = await selectAllUsersService.execute(isAdmin);
 
         return res.json(users);
     };

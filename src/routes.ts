@@ -70,7 +70,7 @@ router.put('/user/update', isAuthenticated, new UpdateUserController().handle);
 router.put('/user/update/password', isAuthenticated, new UpdatePasswordController().handle);
 router.delete('/user/delete', isAuthenticated, new DeleteUserController().handle);
 router.get('/user/details', isAuthenticated, new DetailsUserController().handle);
-router.get('/users/all', isAuthenticated, new SelectAllUsersController().handle);
+router.get('/users/all', new SelectAllUsersController().handle);
 
 router.put('/user/card', isAuthenticated, new UpdateCardController().handle);
 router.get('/user/card', isAuthenticated, new SelectCardController().handle);
