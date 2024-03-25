@@ -9,6 +9,7 @@ import {
     DetailsUserController,
     UpdatePasswordController,
     SelectAllUsersController,
+    UpdateActivityUserController,
 
     CreateCardController,
     DeleteCardController,
@@ -50,7 +51,7 @@ import {
     CreateCouponController,
     UpdateCouponController,
     SelectMyCouponsController,
-    SelectValidCouponsController
+    SelectValidCouponsController,
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -71,6 +72,7 @@ router.put('/user/update/password', isAuthenticated, new UpdatePasswordControlle
 router.delete('/user/delete', isAuthenticated, new DeleteUserController().handle);
 router.get('/user/details', isAuthenticated, new DetailsUserController().handle);
 router.get('/users/all', new SelectAllUsersController().handle);
+router.put('/users/update-active', new UpdateActivityUserController().handle);
 
 router.put('/user/card', isAuthenticated, new UpdateCardController().handle);
 router.get('/user/card', isAuthenticated, new SelectCardController().handle);

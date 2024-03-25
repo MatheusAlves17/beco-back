@@ -5,6 +5,7 @@ import { DeleteUserService } from "./user/DeleteUserService";
 import { DetailsUserService } from "./user/DetailsUserService";
 import { SelectAllUsersService } from "./user/SelectAllUsersService";
 import { UpdatePasswordService } from "./user/UpdatePasswordService";
+import { UpdateActivityUserService } from "./user/UpdateActivityUserService.";
 
 import { CreateCardService } from './card/CreateCardService';
 import { DeleteCardService } from './card/DeleteCardService';
@@ -56,6 +57,7 @@ export {
     DetailsUserService,
     SelectAllUsersService,
     UpdatePasswordService,
+    UpdateActivityUserService,
 };
 
 export {

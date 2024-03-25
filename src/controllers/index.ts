@@ -5,6 +5,7 @@ import { DeleteUserController } from "./user/DeleteUserController";
 import { DetailsUserController } from "./user/DetailsUserController";
 import { SelectAllUsersController } from "./user/SelectAllUsersController";
 import { UpdatePasswordController } from "./user/UpdatePasswordController";
+import { UpdateActivityUserController } from "./user/UpdateActivityUserController";
 
 import { CreateCardController } from "./card/CreateCardController";
 import { DeleteCardController } from "./card/DeleteCardController";
@@ -56,6 +57,7 @@ export {
     DetailsUserController,
     SelectAllUsersController,
     UpdatePasswordController,
+    UpdateActivityUserController,
 };
 
 export {
