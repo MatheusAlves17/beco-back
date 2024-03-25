@@ -3,6 +3,7 @@ import { CreateUserService } from "./user/CreateUserService";
 import { UpdateUserService } from "./user/UpdateUserService";
 import { DeleteUserService } from "./user/DeleteUserService";
 import { DetailsUserService } from "./user/DetailsUserService";
+import { SelectAllUsersService } from "./user/SelectAllUsersService";
 import { UpdatePasswordService } from "./user/UpdatePasswordService";
 
 import { CreateCardService } from './card/CreateCardService';
@@ -53,7 +54,8 @@ export {
     UpdateUserService,
     DeleteUserService,
     DetailsUserService,
-    UpdatePasswordService
+    SelectAllUsersService,
+    UpdatePasswordService,
 };
 
 export {

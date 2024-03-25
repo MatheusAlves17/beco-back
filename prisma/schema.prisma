@@ -18,6 +18,7 @@ model User {
   birth String
   email String
   password String
+  active Boolean @default(true)
   // picture String
   role String @default("client")
 
