@@ -13,7 +13,8 @@ class SelectAddressService {
                 city: true,
                 state: true,
                 zipCode: true,
-                user_id: true
+                user_id: true,
+                type: true,
             },
         });
 
