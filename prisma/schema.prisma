@@ -66,6 +66,7 @@ model Card {
   validity String
   name String
   flag String
+  principal Boolean 
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())

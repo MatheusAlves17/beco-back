@@ -6,10 +6,10 @@ import { CreateCardService } from "../../services";
 class CreateCardController {
     async handle(req: Request, res: Response) {
         const user_id = req.user_id;
-        const { number, validity, name, cvv, flag } = req.body as ICard;
+        const { number, validity, name, cvv, flag, principal } = req.body as ICard;
         const createCardService = new CreateCardService();
 
-        const card = await createCardService.execute(user_id, { number, validity, name, cvv, flag });
+        const card = await createCardService.execute(user_id, { number, validity, name, cvv, flag , principal});
 
         return res.json(card)
     }

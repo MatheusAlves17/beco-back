@@ -3,40 +3,82 @@ import prismaClient from '../../prisma';
 import { ICard } from "../../interfaces";
 
 class CreateCardService {
-    async execute(user_id, { number, validity, cvv, name, flag }: ICard) {
+    async execute(user_id, { number, validity, cvv, name, flag, principal }: ICard) {
 
-        if(!user_id){
+        if (!user_id) {
             throw new Error('Usuário inválido');
         }
 
-        if(!number){
+        if (!number) {
             throw new Error('Número de cartão obrigatório');
         }
 
-        if(!cvv){
+        if (!cvv) {
             throw new Error('CVV obrigatório');
         }
 
-        if(!validity){
+        if (!validity) {
             throw new Error('Data de válidade obrigatória');
         }
 
-        if(!name){
+        if (!name) {
             throw new Error('Nome obrigatório');
         }
 
-        const card = await prismaClient.prismaClient.card.create({
-            data: {
-                number,
-                validity,
-                name,
-                cvv,
-                user_id,
-                flag
-            }
-        });
+        if (!name) {
+            throw new Error('Bandeira é obrigatória');
+        }
 
-        return card;
+        if (principal) {
+
+            const cards = await prismaClient.prismaClient.card.findFirst({
+                where: {
+                    principal: true
+                }
+            });
+
+            const cardsUpdate = await prismaClient.prismaClient.card.update({
+                where: {
+                    id: cards.id
+                },
+                data: {
+                    principal: false
+                }
+            })
+
+            if (cardsUpdate) {
+
+
+
+                const card = await prismaClient.prismaClient.card.create({
+                    data: {
+                        number,
+                        validity,
+                        name,
+                        cvv,
+                        user_id,
+                        flag,
+                        principal: true
+                    }
+                });
+                return card;
+            }
+        } else {
+            const card = await prismaClient.prismaClient.card.create({
+                data: {
+                    number,
+                    validity,
+                    name,
+                    cvv,
+                    user_id,
+                    flag,
+                    principal
+                }
+            });
+
+            return card;
+        }
+
     }
 };
 

@@ -5,4 +5,5 @@ export interface IUpdateCard {
     validity: string;
     name: string;
     flag: string;
+    principal: boolean;
 }

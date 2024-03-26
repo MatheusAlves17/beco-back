@@ -4,4 +4,5 @@ export interface ICard {
     validity: string;
     name: string;
     flag: string;
+    principal: boolean;
 }
