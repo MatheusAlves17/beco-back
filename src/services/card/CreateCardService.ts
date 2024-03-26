@@ -37,33 +37,17 @@ class CreateCardService {
                 }
             });
 
-            const cardsUpdate = await prismaClient.prismaClient.card.update({
-                where: {
-                    id: cards.id
-                },
-                data: {
-                    principal: false
-                }
-            })
-
-            if (cardsUpdate) {
-
-
-
-                const card = await prismaClient.prismaClient.card.create({
+            if (cards) {
+                const cardsUpdate = await prismaClient.prismaClient.card.update({
+                    where: {
+                        id: cards.id
+                    },
                     data: {
-                        number,
-                        validity,
-                        name,
-                        cvv,
-                        user_id,
-                        flag,
-                        principal: true
+                        principal: false
                     }
-                });
-                return card;
+                })
             }
-        } else {
+
             const card = await prismaClient.prismaClient.card.create({
                 data: {
                     number,
@@ -72,13 +56,11 @@ class CreateCardService {
                     cvv,
                     user_id,
                     flag,
-                    principal
+                    principal: true
                 }
             });
-
             return card;
         }
-
     }
 };
 
