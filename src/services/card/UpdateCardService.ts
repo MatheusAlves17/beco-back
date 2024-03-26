@@ -3,43 +3,42 @@ import prismaClient from '../../prisma';
 
 
 class UpdateCardService {
-    async execute(user_id, {id, number, cvv, validity, name, flag, principal }: IUpdateCard) {
-        if(!number){
+    async execute(user_id, { id, number, cvv, validity, name, flag, principal }: IUpdateCard) {
+        if (!number) {
             throw new Error('Número de cartão obrigatório');
         }
 
-        if(!cvv){
+        if (!cvv) {
             throw new Error('CVV obrigatório');
         }
 
-        if(!validity){
+        if (!validity) {
             throw new Error('Data de válidade obrigatória');
         }
 
-        if(!name){
+        if (!name) {
             throw new Error('Nome obrigatório');
         }
 
-        if (principal) {
+        // if (principal) {
 
-            const cards = await prismaClient.prismaClient.card.findFirst({
-                where: {
-                    id: user_id,
-                    principal: true
-                }
-            });
+        //     const cards = await prismaClient.prismaClient.card.findFirst({
+        //         where: {
+        //             id: user_id,
+        //             principal: true
+        //         }
+        //     });
 
-            if (cards) {
-                const cardsUpdate = await prismaClient.prismaClient.card.update({
-                    where: {
-                        id: cards.id
-                    },
-                    data: {
-                        principal: false
-                    }
-                })
-            }
-        }
+        //     if (cards) {
+        //         const cardsUpdate = await prismaClient.prismaClient.card.update({
+        //             where: {
+        //                 id: cards.id
+        //             },
+        //             data: {
+        //                 principal: false
+        //             }
+        //         })
+        //     }
 
         const card = await prismaClient.prismaClient.card.update({
             where: {
@@ -55,6 +54,8 @@ class UpdateCardService {
             }
         });
         return card;
+        // }
+
     };
 };
 

@@ -29,39 +29,39 @@ class CreateCardService {
             throw new Error('Bandeira é obrigatória');
         }
 
-        if (principal) {
+        // if (principal) {
 
-            const cards = await prismaClient.prismaClient.card.findFirst({
-                where: {
-                    id: user_id,
-                    principal: true
-                }
-            });
+        //     const cards = await prismaClient.prismaClient.card.findFirst({
+        //         where: {
+        //             id: user_id,
+        //             principal: true
+        //         }
+        //     });
 
-            if (cards) {
-                const cardsUpdate = await prismaClient.prismaClient.card.update({
-                    where: {
-                        id: cards.id
-                    },
-                    data: {
-                        principal: false
-                    }
-                })
+        //     if (cards) {
+        //         const cardsUpdate = await prismaClient.prismaClient.card.update({
+        //             where: {
+        //                 id: cards.id
+        //             },
+        //             data: {
+        //                 principal: false
+        //             }
+        //         })
+        //     }
+
+        const card = await prismaClient.prismaClient.card.create({
+            data: {
+                number,
+                validity,
+                name,
+                cvv,
+                user_id,
+                flag,
+                principal: true
             }
-
-            const card = await prismaClient.prismaClient.card.create({
-                data: {
-                    number,
-                    validity,
-                    name,
-                    cvv,
-                    user_id,
-                    flag,
-                    principal: true
-                }
-            });
-            return card;
-        }
+        });
+        return card;
+        // }
     }
 };
 
