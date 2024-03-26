@@ -3,7 +3,7 @@ import { IAddress } from '../../interfaces';
 
 
 class CreateAddressService {
-    async execute({ street, number, district, city, state, zipCode, user_id }: IAddress) {
+    async execute({ street, number, district, city, state, zipCode, user_id , type}: IAddress) {
 
         if (!user_id) {
             throw new Error('Usuário inválido');
@@ -33,6 +33,10 @@ class CreateAddressService {
             throw new Error('CEP obrigatório');
         };
 
+        if (!type) {
+            throw new Error('Tipo obrigatório');
+        };
+
         const address = await prismaClient.prismaClient.address.create({
             data: {
                 street,
@@ -41,7 +45,8 @@ class CreateAddressService {
                 city,
                 state,
                 zipCode,
-                user_id
+                user_id,
+                type
             },
             select: {
                 street: true,
@@ -50,7 +55,8 @@ class CreateAddressService {
                 city: true,
                 state: true,
                 zipCode: true,
-                user_id: true
+                user_id: true,
+                type: true
             },
         });
 
