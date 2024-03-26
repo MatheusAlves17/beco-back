@@ -3,7 +3,7 @@ import prismaClient from '../../prisma';
 
 
 class UpdateCardService {
-    async execute({id, number, cvv, validity, name }: IUpdateCard) {
+    async execute({id, number, cvv, validity, name, flag }: IUpdateCard) {
         if(!number){
             throw new Error('Número de cartão obrigatório');
         }
@@ -28,7 +28,8 @@ class UpdateCardService {
                 number,
                 cvv,
                 validity,
-                name
+                name,
+                flag
             }
         });
         return card;

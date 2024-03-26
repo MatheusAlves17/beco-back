@@ -7,7 +7,7 @@ class UpdateCardController {
     async handle(req: Request, res: Response) {
         // const card_id = req.query.card_id as string;
         
-        const { id, number, cvv, validity, name } = req.body;
+        const { id, number, cvv, validity, name, flag } = req.body;
 
         const updateCardService = new UpdateCardService();
         const card = updateCardService.execute({
@@ -15,7 +15,8 @@ class UpdateCardController {
             number,
             cvv,
             validity,
-            name
+            name,
+            flag
         });
 
         return res.json(card);

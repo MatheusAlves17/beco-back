@@ -3,4 +3,5 @@ export interface ICard {
     cvv: string;
     validity: string;
     name: string;
+    flag: string;
 }

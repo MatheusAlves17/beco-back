@@ -3,7 +3,7 @@ import prismaClient from '../../prisma';
 import { ICard } from "../../interfaces";
 
 class CreateCardService {
-    async execute(user_id, { number, validity, cvv, name }: ICard) {
+    async execute(user_id, { number, validity, cvv, name, flag }: ICard) {
 
         if(!user_id){
             throw new Error('Usuário inválido');
@@ -31,7 +31,8 @@ class CreateCardService {
                 validity,
                 name,
                 cvv,
-                user_id
+                user_id,
+                flag
             }
         });
 

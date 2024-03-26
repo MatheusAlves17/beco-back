@@ -6,7 +6,7 @@ class CreateAddressController {
 
     async handle(req: Request, res: Response) {
         const user_id = req.user_id;
-        const { street, number, district, city, state, zipCode } = req.body;
+        const { street, number, district, city, state, zipCode, type } = req.body;
 
         const createAddressService = new CreateAddressService();
         const address = await createAddressService.execute({
@@ -16,7 +16,8 @@ class CreateAddressController {
             city,
             state,
             zipCode,
-            user_id
+            user_id,
+            type
         });
 
         return res.json(address);

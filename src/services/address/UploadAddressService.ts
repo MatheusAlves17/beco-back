@@ -4,7 +4,7 @@ import { IUploadAddress } from "../../interfaces";
 
 class UploadAddressService {
 
-    async execute({ id, street, number, zipCode, district, city, state }: IUploadAddress) {
+    async execute({ id, street, number, zipCode, district, city, state, type }: IUploadAddress) {
         if (!street) {
             throw new Error('Rua obrigatória');
         };
@@ -39,7 +39,8 @@ class UploadAddressService {
                 zipCode,
                 district,
                 city,
-                state
+                state,
+                type
             },
             select: {
                 street: true,
@@ -47,7 +48,8 @@ class UploadAddressService {
                 zipCode: true,
                 district: true,
                 city: true,
-                state: true
+                state: true,
+                type: true,
             },
         })
 

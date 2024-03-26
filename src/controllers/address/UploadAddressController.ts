@@ -3,7 +3,7 @@ import { UploadAddressService } from "../../services";
 
 class UploadAddressController {
     async handle(req: Request, res: Response) {
-        const { id, street, number, zipCode, district, city, state } = req.body;
+        const { id, street, number, zipCode, district, city, state, type } = req.body;
 
         const uploadAddressService = new UploadAddressService();
         const address = await uploadAddressService.execute({
@@ -13,7 +13,8 @@ class UploadAddressController {
             zipCode,
             district,
             city,
-            state
+            state,
+            type
         });
 
         return res.json(address);

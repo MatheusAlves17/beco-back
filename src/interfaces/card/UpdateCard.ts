@@ -4,4 +4,5 @@ export interface IUpdateCard {
     cvv: string;
     validity: string;
     name: string;
+    flag: string;
 }

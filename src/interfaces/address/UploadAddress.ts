@@ -6,4 +6,5 @@ export interface IUploadAddress {
     city: string;
     state: string;
     zipCode: string;
+    type: string;
 };
