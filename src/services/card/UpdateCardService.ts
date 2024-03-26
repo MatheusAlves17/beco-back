@@ -20,6 +20,26 @@ class UpdateCardService {
             throw new Error('Nome obrigatório');
         }
 
+        if (principal) {
+
+            const cards = await prismaClient.prismaClient.card.findFirst({
+                where: {
+                    principal: true
+                }
+            });
+
+            if (cards) {
+                const cardsUpdate = await prismaClient.prismaClient.card.update({
+                    where: {
+                        id: cards.id
+                    },
+                    data: {
+                        principal: false
+                    }
+                })
+            }
+        }
+
         const card = await prismaClient.prismaClient.card.update({
             where: {
                 id
