@@ -1,5 +1,7 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
+// npx prisma migrate reset --preview-feature
+
 
 generator client {
   provider = "prisma-client-js"
@@ -43,6 +45,8 @@ model Address {
   city String
   state String
 
+  type String
+
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
@@ -60,6 +64,7 @@ model Card {
   cvv String
   validity String
   name String
+  flag String
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
