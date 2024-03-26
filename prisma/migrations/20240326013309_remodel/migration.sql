@@ -4,10 +4,11 @@ CREATE TABLE "users" (
     "name" TEXT NOT NULL,
     "cpf" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
+    "birth" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "picture" TEXT NOT NULL,
-    "role" TEXT NOT NULL,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "role" TEXT NOT NULL DEFAULT 'client',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
@@ -23,6 +24,7 @@ CREATE TABLE "address" (
     "district" TEXT NOT NULL,
     "city" TEXT NOT NULL,
     "state" TEXT NOT NULL,
+    "type" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "user_id" TEXT NOT NULL,
@@ -37,21 +39,12 @@ CREATE TABLE "card" (
     "cvv" TEXT NOT NULL,
     "validity" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "flag" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "user_id" TEXT NOT NULL,
 
     CONSTRAINT "card_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "categories" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "categories_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -61,6 +54,7 @@ CREATE TABLE "products" (
     "price" DECIMAL(65,30) NOT NULL,
     "description" TEXT NOT NULL,
     "banner" TEXT NOT NULL,
+    "stock" DECIMAL(65,30) NOT NULL,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "category_id" TEXT NOT NULL,
@@ -71,7 +65,7 @@ CREATE TABLE "products" (
 -- CreateTable
 CREATE TABLE "orders" (
     "id" TEXT NOT NULL,
-    "shipping" DECIMAL(65,30) NOT NULL,
+    "delivery" DECIMAL(65,30) NOT NULL,
     "value_total" DECIMAL(65,30) NOT NULL,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -85,10 +79,15 @@ CREATE TABLE "orders" (
 -- CreateTable
 CREATE TABLE "items" (
     "id" TEXT NOT NULL,
+    "price" DECIMAL(65,30) NOT NULL,
+    "name" TEXT NOT NULL,
+    "banner" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "order_id" TEXT NOT NULL,
     "product_id" TEXT NOT NULL,
+    "status_id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
 
     CONSTRAINT "items_pkey" PRIMARY KEY ("id")
 );
@@ -102,8 +101,19 @@ CREATE TABLE "status" (
 );
 
 -- CreateTable
+CREATE TABLE "category" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "category_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "payments" (
     "id" TEXT NOT NULL,
+    "valueTotal" DECIMAL(65,30) NOT NULL,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "order_id" TEXT NOT NULL,
@@ -117,6 +127,7 @@ CREATE TABLE "payments" (
 CREATE TABLE "coupons" (
     "id" TEXT NOT NULL,
     "value" DECIMAL(65,30) NOT NULL,
+    "isUsed" BOOLEAN NOT NULL DEFAULT false,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "user_id" TEXT NOT NULL,
@@ -134,7 +145,7 @@ ALTER TABLE "address" ADD CONSTRAINT "address_user_id_fkey" FOREIGN KEY ("user_i
 ALTER TABLE "card" ADD CONSTRAINT "card_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "products" ADD CONSTRAINT "products_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "products" ADD CONSTRAINT "products_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "orders" ADD CONSTRAINT "orders_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "status"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -150,6 +161,12 @@ ALTER TABLE "items" ADD CONSTRAINT "items_order_id_fkey" FOREIGN KEY ("order_id"
 
 -- AddForeignKey
 ALTER TABLE "items" ADD CONSTRAINT "items_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "items" ADD CONSTRAINT "items_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "status"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "items" ADD CONSTRAINT "items_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "payments" ADD CONSTRAINT "payments_order_id_fkey" FOREIGN KEY ("order_id") REFERENCES "orders"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
