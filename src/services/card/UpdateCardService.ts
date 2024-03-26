@@ -3,7 +3,7 @@ import prismaClient from '../../prisma';
 
 
 class UpdateCardService {
-    async execute({id, number, cvv, validity, name, flag, principal }: IUpdateCard) {
+    async execute(user_id, {id, number, cvv, validity, name, flag, principal }: IUpdateCard) {
         if(!number){
             throw new Error('Número de cartão obrigatório');
         }
@@ -24,6 +24,7 @@ class UpdateCardService {
 
             const cards = await prismaClient.prismaClient.card.findFirst({
                 where: {
+                    id: user_id,
                     principal: true
                 }
             });

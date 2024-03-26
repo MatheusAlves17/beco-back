@@ -33,6 +33,7 @@ class CreateCardService {
 
             const cards = await prismaClient.prismaClient.card.findFirst({
                 where: {
+                    id: user_id,
                     principal: true
                 }
             });
