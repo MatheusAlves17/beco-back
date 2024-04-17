@@ -11,8 +11,8 @@ app.use(router);
 
 
 app.use(cors({
-    // origin: '*',
-    // allowedHeaders: 'Access-Control-Allow-Origin, ',
+    origin: 'http://localhost:3000/',
+    allowedHeaders: 'Access-Control-Allow-Origin, ',
     credentials: true,
     
 }));
@@ -21,10 +21,11 @@ app.use('/files', express.static('tmp'));
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000/');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.header('Accept', 'application/json');
-    res.header('Content-Type', 'application/json')
+    res.header('Content-Type', 'application/json');
+    res.header('Access-Control-Allow-Methods', 'PUT, PATCH, DELETE')
     next();
 
 
