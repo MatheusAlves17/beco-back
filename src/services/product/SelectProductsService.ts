@@ -10,7 +10,12 @@ class SelectProductsService {
                 stock: true,
                 // category: true,
                 banner: true,
+                active: true
+            },
+            where:{
+                active: true
             }
+            
         });
         return products;
     };

@@ -30,6 +30,7 @@ import { UpdateProductController } from "./product/UpdateProductController";
 import { DeleteProductController } from "./product/DeleteProductController";
 import { SelectProductController } from "./product/SelectProductController";
 import { SelectProductsController } from "./product/SelectProductsController";
+import { InactiveProductController } from "./product/InactiveProductController";
 
 import { CreateStatusController } from "./status/CreateStatusController";
 import { UpdateStatusController } from "./status/UpdateStatusController";
@@ -90,6 +91,7 @@ export {
     DeleteProductController,
     SelectProductController,
     SelectProductsController,
+    InactiveProductController,
 };
 
 export {

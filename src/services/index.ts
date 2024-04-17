@@ -30,6 +30,7 @@ import { UpdateProductService } from "./product/UpdateProductService";
 import { DeleteProductService } from "./product/DeleteProductService";
 import { SelectProductService } from "./product/SelectProductService";
 import { SelectProductsService } from "./product/SelectProductsService";
+import { InactiveProductService } from "./product/InactiveProductService";
 
 import { CreateStatusService } from "./status/CreateStatusService";
 import { UpdateStatusService } from "./status/UpdateStatusService";
@@ -89,7 +90,8 @@ export {
     UpdateProductService,
     DeleteProductService,
     SelectProductService,
-    SelectProductsService
+    SelectProductsService,
+    InactiveProductService
 };
 
 export {

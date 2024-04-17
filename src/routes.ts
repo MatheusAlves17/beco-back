@@ -34,6 +34,7 @@ import {
     DeleteProductController,
     SelectProductController,
     SelectProductsController,
+    InactiveProductController,
 
     CreateStatusController,
     UpdateStatusController,
@@ -86,17 +87,18 @@ router.post('/user/address', isAuthenticated, new CreateAddressController().hand
 router.get('/user/all-address', isAuthenticated, new SelectAllAddressController().handle);
 router.delete('/user/address', isAuthenticated, new DeleteAddressController().handle);
 
-router.post('/category', isAuthenticated, new CreateCategoryController().handle);
-router.get('/category/one', isAuthenticated, new SelectCategoryController().handle);
-router.put('/category/update', isAuthenticated, new UpdateCategoryController().handle);
-router.get('/category/all', isAuthenticated, new SelectAllCategoriesController().handle);
-router.delete('/category/delete', isAuthenticated, new DeleteCategoryController().handle);
+router.post('/category', new CreateCategoryController().handle);
+router.get('/category/one', new SelectCategoryController().handle);
+router.put('/category/update', new UpdateCategoryController().handle);
+router.get('/category/all', new SelectAllCategoriesController().handle);
+router.delete('/category/delete', new DeleteCategoryController().handle);
 
 router.get('/product/one', new SelectProductController().handle);
 router.get('/product/all', new SelectProductsController().handle);
-router.delete('/product', isAuthenticated, new DeleteProductController().handle);
-router.post('/product', isAuthenticated, upload.single('file'), new CreateProductController().handle);
-router.put('/product', isAuthenticated, upload.single('file'), new UpdateProductController().handle);
+router.delete('/product',  new DeleteProductController().handle);
+router.post('/product',  upload.single('file'), new CreateProductController().handle);
+router.put('/product',  upload.single('file'), new UpdateProductController().handle);
+router.put('/product/inactive', new InactiveProductController().handle);
 
 router.put('/status', isAuthenticated, new UpdateStatusController().handle);
 router.post('/status', isAuthenticated, new CreateStatusController().handle);
