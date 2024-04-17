@@ -10,7 +10,11 @@ app.use(express.json());
 app.use(router);
 
 
-app.use(cors({ credentials: true }));
+app.use(cors({
+    origin: '*',
+    allowedHeaders: '*',
+    credentials: true
+}));
 
 app.use('/files', express.static('tmp'));
 
