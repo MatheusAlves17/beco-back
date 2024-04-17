@@ -5,7 +5,7 @@ import { CreateProductService } from "../../services";
 class CreateProductController {
     async handle(req: Request, res: Response) {
         const user_id = req.user_id;
-        const { name, price, description, category_id, stock } = req.body;
+        const { name, price, description, category_id, stock, weight } = req.body;
 
 
         if (!req.file) {
@@ -21,13 +21,13 @@ class CreateProductController {
                     description,
                     banner: filename,
                     category_id,
-                    stock: parseInt(stock)
+                    stock: parseInt(stock),
+                    weight: parseInt(weight)
                 }
             );
 
             return res.json(product);
         }
-
     }
 };
 

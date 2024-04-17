@@ -87,6 +87,8 @@ model Product {
   banner String
   stock Decimal
 
+  weight Decimal?
+
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 

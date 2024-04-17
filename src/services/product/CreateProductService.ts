@@ -7,10 +7,11 @@ interface ICreateProduct {
     banner: string;
     category_id: string;
     stock: number;
+    weight: number;
 };
 
 class CreateProductService {
-    async execute(user_id, { name, price, description, banner, category_id, stock }: ICreateProduct) {
+    async execute(user_id, { name, price, description, banner, category_id, stock, weight }: ICreateProduct) {
         const isAdmin = await prismaClient.prismaClient.user.findFirst({
             where: {
                 id: user_id
@@ -55,7 +56,8 @@ class CreateProductService {
                 description,
                 banner,
                 category_id,
-                stock
+                stock,
+                weight
             }
         });
 
