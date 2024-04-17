@@ -29,26 +29,6 @@ class CreateCardService {
             throw new Error('Bandeira é obrigatória');
         }
 
-        // if (principal) {
-
-        //     const cards = await prismaClient.prismaClient.card.findFirst({
-        //         where: {
-        //             id: user_id,
-        //             principal: true
-        //         }
-        //     });
-
-        //     if (cards) {
-        //         const cardsUpdate = await prismaClient.prismaClient.card.update({
-        //             where: {
-        //                 id: cards.id
-        //             },
-        //             data: {
-        //                 principal: false
-        //             }
-        //         })
-        //     }
-
         const card = await prismaClient.prismaClient.card.create({
             data: {
                 number,

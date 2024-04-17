@@ -24,3 +24,4 @@ class DeleteUserService {
 };
 
 export { DeleteUserService };
+

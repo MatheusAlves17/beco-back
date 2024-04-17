@@ -47,12 +47,10 @@ class AuthUserService {
             name: user.name,
             cpf: user.cpf,
             phone: user.phone,
-            // picture: user.picture,
             role: user.role,
             email: user.email,
             token,
         };
-
     }
 }
 
