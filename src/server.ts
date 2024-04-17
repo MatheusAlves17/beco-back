@@ -15,19 +15,12 @@ app.use(cors({
     
 }));
 
+app.use('/files', express.static('tmp'));
+
 app.use(router);
 
 
-app.use('/files', express.static('tmp'));
-
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-
-    // res.header('Access-Control-Allow-Origin', 'http://localhost:3000/');
-    // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    // res.header('Accept', 'application/json');
-    // res.header('Content-Type', 'application/json');
-    // res.header('Access-Control-Allow-Methods', 'PUT, PATCH, DELETE')
-    // next();
+app.use((err: Error, req: Request, res: Response) => {
 
 
     if (err instanceof Error) {
