@@ -7,26 +7,27 @@ import cors from 'cors';
 const app = express();
 
 app.use(express.json());
+
+app.use(cors({
+    origin: '*',
+    allowedHeaders: '* ',
+    credentials: true,
+    
+}));
+
 app.use(router);
 
-
-// app.use(cors({
-//     // origin: 'http://localhost:3000/',
-//     // allowedHeaders: '* ',
-//     credentials: true,
-    
-// }));
 
 app.use('/files', express.static('tmp'));
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000/');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.header('Accept', 'application/json');
-    res.header('Content-Type', 'application/json');
-    res.header('Access-Control-Allow-Methods', 'PUT, PATCH, DELETE')
-    next();
+    // res.header('Access-Control-Allow-Origin', 'http://localhost:3000/');
+    // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    // res.header('Accept', 'application/json');
+    // res.header('Content-Type', 'application/json');
+    // res.header('Access-Control-Allow-Methods', 'PUT, PATCH, DELETE')
+    // next();
 
 
     if (err instanceof Error) {
