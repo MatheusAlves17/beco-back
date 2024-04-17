@@ -15,10 +15,9 @@ app.use(cors({
     
 }));
 
-app.use('/files', express.static('tmp'));
-
 app.use(router);
 
+app.use('/files', express.static('tmp'));
 
 app.use((err: Error, req: Request, res: Response) => {
 
