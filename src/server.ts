@@ -26,6 +26,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     // res.header('Content-Type', 'application/json')
     // next();
 
+
     if (err instanceof Error) {
         return res.status(400).json({
             error: err.message
