@@ -49,6 +49,7 @@ import { UpdateCouponController } from "./coupon/UpdateCouponController";
 import { SelectMyCouponsController } from "./coupon/SelectMyCouponsController";
 import { SelectValidCouponsController } from "./coupon/SelectValidCouponsController";
 
+import { CreatePaymentController } from "./payment/CreatePaymentController";
 
 export {
     AuthUserController,
@@ -120,3 +121,5 @@ export {
     SelectMyCouponsController,
     SelectValidCouponsController
 };
+
+export { CreatePaymentController };

@@ -53,6 +53,7 @@ import {
     UpdateCouponController,
     SelectMyCouponsController,
     SelectValidCouponsController,
+    CreatePaymentController,
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -100,11 +101,11 @@ router.post('/product',  upload.single('file'), new CreateProductController().ha
 router.put('/product',  upload.single('file'), new UpdateProductController().handle);
 router.put('/product/inactive', new InactiveProductController().handle);
 
-router.put('/status', isAuthenticated, new UpdateStatusController().handle);
-router.post('/status', isAuthenticated, new CreateStatusController().handle);
-router.delete('/status', isAuthenticated, new DeleteStatusController().handle);
-router.get('/status/one', isAuthenticated, new SelectStatusController().handle);
-router.get('/status/all', isAuthenticated, new SelectAllStatusController().handle);
+router.put('/status', new UpdateStatusController().handle);
+router.post('/status', new CreateStatusController().handle);
+router.delete('/status', new DeleteStatusController().handle);
+router.get('/status/one', new SelectStatusController().handle);
+router.get('/status/all', new SelectAllStatusController().handle);
 
 router.put('/order', isAuthenticated, new UpdateOrderController().handle);
 router.post('/order', isAuthenticated, new CreateOrderController().handle);
@@ -119,5 +120,9 @@ router.post('/coupon', isAuthenticated, new CreateCouponController().handle);
 router.put('/coupon', isAuthenticated, new UpdateCouponController().handle);
 router.get('/all-my-coupons', isAuthenticated, new SelectMyCouponsController().handle);
 router.get('/my-coupons', isAuthenticated, new SelectValidCouponsController().handle);
+
+router.post('/payment', isAuthenticated, new CreatePaymentController().handle);
+
+
 
 export { router };

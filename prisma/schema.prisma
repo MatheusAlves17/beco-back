@@ -3,7 +3,6 @@
 // npx prisma migrate reset --preview-feature
 //  npx prisma migrate dev
 
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,78 +13,77 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
-  name String
-  cpf String
-  phone String
-  birth String
-  email String
+  id       String   @id @default(uuid())
+  name     String
+  cpf      String
+  phone    String
+  birth    String
+  email    String
   password String
-  active Boolean? @default(true)
-  role String @default("client")
+  active   Boolean? @default(true)
+  role     String   @default("client")
   // picture String
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
+  address    Address[]
+  card       Card[]
+  order      Order[]
+  item       Item[]
+  coupon     Coupon[]
+  payment    Payment[]
 
   @@map("users")
-  address Address[]
-  card Card[]
-  order Order[]
-  item Item[]
-  coupon Coupon[]
-
 }
 
 model Address {
-  id String @id @default(uuid())
-  zipCode String
-  street String
-  number String
+  id       String @id @default(uuid())
+  zipCode  String
+  street   String
+  number   String
   district String
-  city String
-  state String
+  city     String
+  state    String
 
   type String
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
-  @@map("address")
-
-  user User @relation(fields: [user_id], references: [id])
+  user    User   @relation(fields: [user_id], references: [id])
   user_id String
 
   order Order[]
+
+  @@map("address")
 }
 
 model Card {
-  id String @id @default(uuid())
-  number String 
-  cvv String
-  validity String
-  name String
-  flag String
-  principal Boolean 
+  id        String  @id @default(uuid())
+  number    String
+  cvv       String
+  validity  String
+  name      String
+  flag      String
+  principal Boolean
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
-
-  @@map("card")
-  user User @relation(fields: [user_id], references: [id])
-  user_id String
+  user       User      @relation(fields: [user_id], references: [id])
+  user_id    String
 
   payment Payment[]
+
+  @@map("card")
 }
 
-
 model Product {
-  id String @id @default(uuid())
-  name String
-  price Decimal
+  id          String  @id @default(uuid())
+  name        String
+  price       Decimal
   description String
-  banner String
-  stock Decimal
+  banner      String
+  stock       Decimal
 
   weight Decimal?
   active Boolean? @default(true)
@@ -93,117 +91,118 @@ model Product {
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
-  @@map("products")
-  
   items Item[]
-  
-  category Category @relation(fields: [category_id], references: [id])
+
+  category    Category @relation(fields: [category_id], references: [id])
   category_id String
+
+  @@map("products")
 }
 
 model Order {
   id String @id @default(uuid())
-  
-  delivery Decimal
+
+  delivery    Decimal?
   value_total Decimal
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
-  
-  @@map("orders")
-    
-  status Status @relation(fields: [status_id], references: [id])
+
+  status    Status @relation(fields: [status_id], references: [id])
   status_id String
-  
-  user User @relation(fields: [user_id], references: [id])
+
+  user    User   @relation(fields: [user_id], references: [id])
   user_id String
 
-  address Address @relation(fields: [address_id], references: [id])
+  address    Address @relation(fields: [address_id], references: [id])
   address_id String
 
   payment Payment[]
-  item Item[]
+  item    Item[]
+
+  @@map("orders")
 }
 
 model Item {
-  id String @id @default(uuid())
-  price Decimal
-  name String
+  id     String  @id @default(uuid())
+  price  Decimal
+  name   String
   banner String
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
-  
 
-  @@map("items")
-  
-  order Order @relation(fields: [order_id], references: [id])
+  order    Order  @relation(fields: [order_id], references: [id])
   order_id String
-  
-  product Product @relation(fields: [product_id], references: [id])
+
+  product    Product @relation(fields: [product_id], references: [id])
   product_id String
 
-  status Status @relation(fields: [status_id], references: [id])
+  status    Status @relation(fields: [status_id], references: [id])
   status_id String
 
-  user User @relation(fields: [user_id], references: [id])
+  user    User   @relation(fields: [user_id], references: [id])
   user_id String
+
+  @@map("items")
 }
 
 model Status {
-  id String @id @default(uuid())
+  id   String @id @default(uuid())
   name String
 
-  @@map("status")
-  
   order Order[]
-  item Item[]
+  item  Item[]
+
+  @@map("status")
 }
 
 model Category {
-  id String @id @default(uuid())
+  id   String @id @default(uuid())
   name String
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
-  @@map("category")
+  product Product[]
 
-  product Product[] 
+  @@map("category")
 }
 
 model Payment {
-  id String @id @default(uuid())
-  value Decimal
-  
+  id          String   @id @default(uuid())
+  valueCard   Decimal?
+  valueCoupon Decimal?
+
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
-  
-  @@map("payments")
-  order Order @relation(fields: [order_id], references: [id])
-  order_id String
+  order      Order     @relation(fields: [order_id], references: [id])
+  order_id   String
 
-  card Card @relation(fields: [card_id], references: [id])
+  card    Card   @relation(fields: [card_id], references: [id])
   card_id String
 
-  coupon Coupon? @relation(fields: [coupon_id], references: [id])
+  coupon    Coupon? @relation(fields: [coupon_id], references: [id])
   coupon_id String? @unique
+
+  user      User?   @relation(fields: [user_id], references: [id])
+  user_id    String?
+
+  @@map("payments")
 }
 
 model Coupon {
-  id String @id @default(uuid())
-  value Decimal
+  id     String  @id @default(uuid())
+  value  Decimal
   isUsed Boolean @default(false)
-
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
-  
-  @@map("coupons")
 
-  user User @relation(fields: [user_id], references: [id])
+  user    User   @relation(fields: [user_id], references: [id])
   user_id String
 
   payment Payment?
 
+  @@map("coupons")
 }

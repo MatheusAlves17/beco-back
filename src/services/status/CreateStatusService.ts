@@ -6,15 +6,15 @@ interface ICreateStatus {
 
 class CreateStatusService {
     async execute(user_id: string, { name }: ICreateStatus) {
-        const isAdmin = await prismaClient.prismaClient.user.findFirst({
-            where: {
-                id: user_id
-            }
-        });
+        // const isAdmin = await prismaClient.prismaClient.user.findFirst({
+        //     where: {
+        //         id: user_id
+        //     }
+        // });
 
-        if (isAdmin.role !== 'admin') {
-            throw new Error('Operação não autorizada');
-        };
+        // if (isAdmin.role !== 'admin') {
+        //     throw new Error('Operação não autorizada');
+        // };
 
         const statusAlreadyExists = await prismaClient.prismaClient.status.findFirst({
             where:{
