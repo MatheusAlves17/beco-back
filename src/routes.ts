@@ -96,9 +96,10 @@ router.delete('/category/delete', new DeleteCategoryController().handle);
 
 router.get('/product/one', new SelectProductController().handle);
 router.get('/product/all', new SelectProductsController().handle);
-router.delete('/product',  new DeleteProductController().handle);
-router.post('/product',  upload.single('file'), new CreateProductController().handle);
-router.put('/product',  upload.single('file'), new UpdateProductController().handle);
+router.delete('/product', new DeleteProductController().handle);
+// router.post('/product',  upload.single('file'), new CreateProductController().handle);
+router.post('/product', new CreateProductController().handle);
+router.put('/product', upload.single('file'), new UpdateProductController().handle);
 router.put('/product/inactive', new InactiveProductController().handle);
 
 router.put('/status', new UpdateStatusController().handle);
