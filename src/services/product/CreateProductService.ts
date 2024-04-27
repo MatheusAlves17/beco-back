@@ -37,9 +37,9 @@ class CreateProductService {
             throw new Error('Descrição obrigatória');
         };
 
-        // if (!banner) {
-        //     throw new Error('Foto obrigatória');
-        // };
+        if (!banner) {
+            throw new Error('Foto obrigatória');
+        };
 
         if (!category_id) {
             throw new Error('Categoria obrigatória');

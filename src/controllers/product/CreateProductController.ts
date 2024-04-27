@@ -8,10 +8,10 @@ class CreateProductController {
         const { name, price, description, category_id, stock, weight, filename } = req.body;
 
 
-        // if (!req.file) {
-        //     throw new Error("Falha ao enviar foto do produto")
-        // } else {
-            // const { filename } = req.file;
+        if (!req.file) {
+            throw new Error("Falha ao enviar foto do produto")
+        } else {
+            const { filename } = req.file;
             const createProductService = new CreateProductService();
             const product = await createProductService.execute(
                 user_id,
@@ -27,7 +27,7 @@ class CreateProductController {
             );
 
             return res.json(product);
-        // }
+        }
     }
 };
 
