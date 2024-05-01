@@ -84,6 +84,7 @@ model Product {
   description String
   banner      String
   stock       Decimal
+  path        String?
 
   weight Decimal?
   active Boolean? @default(true)
@@ -128,6 +129,7 @@ model Item {
   price  Decimal
   name   String
   banner String
+  path   String?
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
@@ -185,8 +187,8 @@ model Payment {
   coupon    Coupon? @relation(fields: [coupon_id], references: [id])
   coupon_id String? @unique
 
-  user      User?   @relation(fields: [user_id], references: [id])
-  user_id    String?
+  user    User?   @relation(fields: [user_id], references: [id])
+  user_id String?
 
   @@map("payments")
 }

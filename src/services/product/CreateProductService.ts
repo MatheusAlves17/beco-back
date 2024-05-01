@@ -8,10 +8,11 @@ interface ICreateProduct {
     category_id: string;
     stock: number;
     weight: number;
+    path?: string;
 };
 
 class CreateProductService {
-    async execute(user_id, { name, price, description, banner, category_id, stock, weight }: ICreateProduct) {
+    async execute(user_id, { name, price, description, banner, category_id, stock, weight, path }: ICreateProduct) {
         const isAdmin = await prismaClient.prismaClient.user.findFirst({
             where: {
                 id: user_id
@@ -21,9 +22,9 @@ class CreateProductService {
         console.log(isAdmin.role);
         
 
-        if (isAdmin.role !== 'admin') {
-            throw new Error('Operação não autorizada!');
-        };
+        // if (isAdmin.role !== 'admin') {
+        //     throw new Error('Operação não autorizada!');
+        // };
 
         if (!name) {
             throw new Error('Nome obrigatório');
@@ -57,7 +58,8 @@ class CreateProductService {
                 banner,
                 category_id,
                 stock,
-                weight
+                weight,
+                path
             }
         });
 

@@ -10,7 +10,8 @@ class SelectProductsService {
                 stock: true,
                 // category: true,
                 banner: true,
-                active: true
+                active: true,
+                path: true,
             },
             where:{
                 active: true

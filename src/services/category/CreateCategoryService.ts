@@ -5,18 +5,18 @@ interface ICategory {
 }
 class CreateCategoryService {
     async execute({ name, user_id }: ICategory) {
-        const isAdmin = await prismaClient.prismaClient.user.findFirst({
-            where: {
-                id: user_id
-            }
-        });
+        // const isAdmin = await prismaClient.prismaClient.user.findFirst({
+        //     where: {
+        //         id: user_id
+        //     }
+        // });
 
-        if (isAdmin.role === 'admin') {
-            console.log(isAdmin.role);
+        // if (isAdmin.role === 'admin') {
+        //     console.log(isAdmin.role);
             
-            if (!name) {
-                throw new Error('Nome de categoria é obrigatório');
-            }
+        //     if (!name) {
+        //         throw new Error('Nome de categoria é obrigatório');
+        //     }
 
             const category = await prismaClient.prismaClient.category.create({
                 data: {
@@ -29,9 +29,9 @@ class CreateCategoryService {
             });
  
             return category;
-        } else {
-            throw new Error('Operação não autorizada!');
-        }
+        // } else {
+        //     throw new Error('Operação não autorizada!');
+        // }
 
     };
 
