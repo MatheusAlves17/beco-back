@@ -14,6 +14,7 @@ class SelectProductService {
                 description: true,
                 category: true,
                 banner: true,
+                path: true,
             }
         });
 
