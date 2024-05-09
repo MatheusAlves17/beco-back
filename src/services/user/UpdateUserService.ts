@@ -27,17 +27,17 @@ class UpdateUserService {
             where: {
                 id: user_id
             },
-            data:{
+            data: {
                 name,
                 phone,
                 email,
                 cpf,
             },
-            select:{
+            select: {
                 name: true,
                 phone: true,
-                email:true,
-                cpf:true,
+                email: true,
+                cpf: true,
             }
         })
 

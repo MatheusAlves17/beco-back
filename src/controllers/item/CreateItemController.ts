@@ -17,16 +17,16 @@ class CreateItemController {
 
         console.log(user_id);
 
-        if (!req.file) {
-            throw new Error("Falha ao enviar foto do produto")
+        // if (!req.file) {
+        //     throw new Error("Falha ao enviar foto do produto")
 
-        } else {
-            const { filename } = req.file
+        // } else {
+            // const { filename } = req.file
             const createItemService = new CreateItemService();
             const item = await createItemService.execute({
                 name,
                 price,
-                banner: filename,
+                banner: file,
                 order_id,
                 product_id,
                 status_id,
@@ -34,7 +34,7 @@ class CreateItemController {
             });
 
             return res.json(item);
-        }
+        // }
     }
 };
 
