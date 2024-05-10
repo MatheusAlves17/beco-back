@@ -24,14 +24,15 @@ model User {
   role     String   @default("client")
   // picture String
 
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
-  address    Address[]
-  card       Card[]
-  order      Order[]
-  item       Item[]
-  coupon     Coupon[]
-  payment    Payment[]
+  created_at     DateTime?       @default(now())
+  updated_at     DateTime?       @default(now())
+  address        Address[]
+  card           Card[]
+  order          Order[]
+  item           Item[]
+  coupon         Coupon[]
+  // payment_cards  PaymentCard[]
+  // payment_coupon PaymentCoupon[]
 
   @@map("users")
 }
@@ -72,7 +73,7 @@ model Card {
   user       User      @relation(fields: [user_id], references: [id])
   user_id    String
 
-  payment Payment[]
+  payment_cards PaymentCard[]
 
   @@map("card")
 }
@@ -118,8 +119,10 @@ model Order {
   address    Address @relation(fields: [address_id], references: [id])
   address_id String
 
-  payment Payment[]
-  item    Item[]
+  payment_cards  PaymentCard[]
+  payment_coupon PaymentCoupon[]
+
+  item Item[]
 
   @@map("orders")
 }
@@ -171,28 +174,6 @@ model Category {
   @@map("category")
 }
 
-model Payment {
-  id          String   @id @default(uuid())
-  valueCard   Decimal?
-  valueCoupon Decimal?
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
-  order      Order     @relation(fields: [order_id], references: [id])
-  order_id   String
-
-  card    Card   @relation(fields: [card_id], references: [id])
-  card_id String
-
-  coupon    Coupon? @relation(fields: [coupon_id], references: [id])
-  coupon_id String? @unique
-
-  user    User?   @relation(fields: [user_id], references: [id])
-  user_id String?
-
-  @@map("payments")
-}
-
 model Coupon {
   id     String  @id @default(uuid())
   value  Decimal
@@ -204,7 +185,45 @@ model Coupon {
   user    User   @relation(fields: [user_id], references: [id])
   user_id String
 
-  payment Payment?
+  payment_coupon PaymentCoupon[]
 
   @@map("coupons")
+}
+
+model PaymentCard {
+  id    String   @id @default(uuid())
+  value Decimal?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  order    Order?  @relation(fields: [order_id], references: [id])
+  order_id String?
+
+  card    Card?   @relation(fields: [card_id], references: [id])
+  card_id String?
+
+  // user    User?   @relation(fields: [user_id], references: [id])
+  // user_id String?
+
+  @@map("paymentsCard")
+}
+
+model PaymentCoupon {
+  id    String   @id @default(uuid())
+  value Decimal?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  order    Order?  @relation(fields: [order_id], references: [id])
+  order_id String?
+
+  coupon    Coupon? @relation(fields: [coupon_id], references: [id])
+  coupon_id String?
+
+  // user    User?   @relation(fields: [user_id], references: [id])
+  // user_id String?
+
+  @@map("paymentsCoupon")
 }

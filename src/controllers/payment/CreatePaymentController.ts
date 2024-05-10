@@ -17,14 +17,13 @@ class CreatePaymentController {
         const order_id = req.query.order_id as string;
         const { cards, coupon } = req.body;
 
-        // const createPaymentService = new CreatePaymentService();
+        const createPaymentService = new CreatePaymentService();
 
-        // const paymentForm = await createPaymentService.execute({payments, order_id})
+        const payments = await createPaymentService.execute({cards, coupon, order_id});
+        
+        return res.json(payments);
 
-        return res.json({
-            cards,
-            coupon
-        })
+
     };
 };
 

@@ -3,7 +3,7 @@ import prismaClient from '../../prisma';
 
 export interface CreatePayment {
     cards: Payment[];
-    coupon: Payment;
+    coupon?: Payment;
     order_id: string;
 }
 export interface Payment {
@@ -27,31 +27,100 @@ class CreatePaymentService {
             }
         });
 
-        if (coupon.id) {
-            const valueDiscount = valueTotalOrder.value_total.toNumber() - coupon.value;
 
-            const totalCardsValue = cards.reduce((acc, card) => acc + card.value, 0);
+        if (coupon) {
+            const couponIsValid = await prismaClient.prismaClient.coupon.findFirst({
+                where: {
+                    id: coupon.id
+                },
+                select: {
+                    isUsed: true,
+                    value: true
+                }
+            })
 
-            if (totalCardsValue < valueDiscount) {
-                throw new Error('O valor total dos cartões não é suficiente para cobrir o valor restante.');
+            if (!couponIsValid.isUsed) {
+                const valueWithDiscount = valueTotalOrder.value_total.toNumber() - couponIsValid.value.toNumber();
+
+                let totalCards = 0;
+                for (const card of cards) {
+                    totalCards += card.value
+                }
+
+                const totalOrder = totalCards + couponIsValid.value.toNumber();
+
+                if (totalCards !== valueWithDiscount) {
+                    return { msg: `Faltam R$ ${valueTotalOrder.value_total.toNumber() - totalOrder}` }
+                }
+
+                if (totalOrder !== valueTotalOrder.value_total.toNumber()) {
+                    return { msg: `Faltam R$ ${valueTotalOrder.value_total.toNumber() - totalOrder}` }
+                }
+
+                const paymentCoupon = await prismaClient.prismaClient.paymentCoupon.create({
+                    data: {
+                        coupon_id: coupon.id,
+                        value: couponIsValid.value,
+                        order_id: order_id,
+
+                    }
+                });
+
+                if (paymentCoupon) {
+                    const updateCoupon = await prismaClient.prismaClient.coupon.update({
+                        where: {
+                            id: coupon.id
+                        },
+                        data: {
+                            isUsed: true
+                        }
+                    });
+                }
+
+                const paymentData = cards.map(card => ({
+                    id: card.id,
+                    value: card.value,
+                    order_id: order_id
+
+                }));
+
+                const paymentsCards = await prismaClient.prismaClient.paymentCard.createMany({
+                    data: paymentData,
+                });
+
+                if (paymentCoupon && paymentsCards) {
+                    return { msg: 'Pagamento realizado com sucesso!' };
+                }
+
             }
+            else {
+                throw new Error('Cupom inválido')
+            }
+        } else {
 
-            const paymentsData = cards.map(card => ({
-                card_id: card.id,
-                valueCard: card.value,
-                valueCoupon: coupon.value,
-                coupon_id: coupon.id,
-                order_id: order_id
-            }));
-        
-            const createdPayments = await prismaClient.prismaClient.payment.createMany({
-                data: paymentsData
-            });
-        }
+            const isValueValid = (value: number) => {
+                return value > 10;
+            };
 
+            const isValid = cards.every(card => isValueValid(card.value));
 
-        return valueTotalOrder;
-    }
+            if (isValid) {
+                return { msg: 'O valor mínimo de cada cartão deve ser de R$ 10,00' }
+            } else {
+                const paymentData = cards.map(card => ({
+                    id: card.id,
+                    value: card.value,
+                    order_id: order_id
+
+                }));
+
+                const paymentsCards = await prismaClient.prismaClient.paymentCard.createMany({
+                    data: paymentData,
+                });
+                return { msg: 'Pagamento realizado com sucesso!' };
+            }
+        };
+    };
 };
 
 export { CreatePaymentService };
