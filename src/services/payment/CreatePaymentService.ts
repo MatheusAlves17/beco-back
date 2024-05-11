@@ -117,9 +117,32 @@ class CreatePaymentService {
                 const paymentsCards = await prismaClient.prismaClient.paymentCard.createMany({
                     data: paymentData,
                 });
+                const statusId = await prismaClient.prismaClient.status.findFirst({
+                    where:{
+                        name: 'Pagamento confirmado'
+                    },
+                    select:{
+                        id: true
+                    }
+                });
+        
+                // const status = statusId.id;
+        
+                // const updateOrder = await prismaClient.prismaClient.order.update({
+                //     where:{
+                //         id: order_id
+                //     },
+                //     data:{
+                //         status
+                //     }
+                // });
                 return { msg: 'Pagamento realizado com sucesso!' };
             }
         };
+
+
+        
+
     };
 };
 
