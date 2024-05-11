@@ -105,7 +105,7 @@ class CreatePaymentService {
             const isValid = cards.every(card => isValueValid(card.value));
 
             if (!isValid) {
-                return { msg: 'O valor mínimo de cada cartão deve ser de R$ 10,00' }
+                throw new Error('O valor mínimo precisa ser de R$ 10.00')
             } else {
                 const paymentData = cards.map(card => ({
                     id: card.id,
@@ -117,14 +117,15 @@ class CreatePaymentService {
                 const paymentsCards = await prismaClient.prismaClient.paymentCard.createMany({
                     data: paymentData,
                 });
-                const statusId = await prismaClient.prismaClient.status.findFirst({
-                    where:{
-                        name: 'Pagamento confirmado'
-                    },
-                    select:{
-                        id: true
-                    }
-                });
+
+                // const statusId = await prismaClient.prismaClient.status.findFirst({
+                //     where:{
+                //         name: 'Pagamento confirmado'
+                //     },
+                //     select:{
+                //         id: true
+                //     }
+                // });
         
                 // const status = statusId.id;
         
@@ -136,6 +137,7 @@ class CreatePaymentService {
                 //         status
                 //     }
                 // });
+
                 return { msg: 'Pagamento realizado com sucesso!' };
             }
         };
