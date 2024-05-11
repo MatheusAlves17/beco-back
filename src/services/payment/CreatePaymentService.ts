@@ -108,7 +108,7 @@ class CreatePaymentService {
                 throw new Error('O valor mínimo precisa ser de R$ 10.00')
             } else {
                 const paymentData = cards.map(card => ({
-                    id: card.id,
+                    card_id: card.id,
                     value: card.value,
                     order_id: order_id
 
