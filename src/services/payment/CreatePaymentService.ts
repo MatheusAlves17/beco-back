@@ -104,7 +104,7 @@ class CreatePaymentService {
 
             const isValid = cards.every(card => isValueValid(card.value));
 
-            if (isValid) {
+            if (!isValid) {
                 return { msg: 'O valor mínimo de cada cartão deve ser de R$ 10,00' }
             } else {
                 const paymentData = cards.map(card => ({

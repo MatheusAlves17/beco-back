@@ -8,12 +8,12 @@ class SelectAllOrdersService {
             },
             select: {
                 id: true,
-                delivery: true,
+                // delivery: true,
                 value_total: true,
                 created_at: true,
                 status: true,
                 item: true,
-                address: true,
+                // address: true,
             }
         });
         return orders;
