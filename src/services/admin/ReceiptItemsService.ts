@@ -10,21 +10,33 @@ class ReceiptItemsService {
                 id: true
             }
         });
-
+        
         const statusId = status.id;
-
-        let products;
+        
         const productCounts: { [productId: string]: number } = {};
+        const userSums: { [userId: string]: number } = {};
 
+        
         for (let item of items) {
             const itemData = await prismaClient.prismaClient.item.findUnique({
                 where: {
                     id: item
+                },
+                include:{
+                    user: true
                 }
             });
 
             if (itemData) {
                 const productId = itemData.product_id;
+                const userId = itemData.user_id;
+                const itemPrice = itemData.price;
+
+                if (userSums[userId]) {
+                    userSums[userId] += itemPrice.toNumber();
+                } else {
+                    userSums[userId] = itemPrice.toNumber();
+                }
 
                 if (productCounts[productId]) {
                     productCounts[productId]++;
@@ -32,7 +44,18 @@ class ReceiptItemsService {
                     productCounts[productId] = 1;
                 }
             };
+
+            const updatedItems = await prismaClient.prismaClient.item.update({
+                where:{
+                    id: item
+                },
+                data:{
+                    status_id: statusId
+                }
+            });
+            
         };
+
         for (const productId in productCounts) {
             const count = productCounts[productId];
 
@@ -47,7 +70,21 @@ class ReceiptItemsService {
                 }
             });
         }
-        return productCounts;
+        let sum;
+        for (const userId in userSums) {
+            sum = userSums[userId];
+
+            await prismaClient.prismaClient.coupon.create({
+               
+                data: {
+                    value: sum,
+                    user_id: userId
+                }
+            });
+        }
+        
+        return {msg: 'Estoque atualizado e cupom gerado!'}
+
     };
 };
 
