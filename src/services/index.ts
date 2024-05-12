@@ -52,8 +52,9 @@ import { SelectValidCouponsService } from "./coupon/SelectValidCouponsService";
 
 // ADMIN
 import { GetAllOrdersService } from "./admin/GetAllOrdersService";
+import { UpdateOrderStatusService } from "./admin/UpdateOrderStatusService";
 
-export { GetAllOrdersService };
+export { GetAllOrdersService, UpdateOrderStatusService };
 
 export {
     AuthUserService,

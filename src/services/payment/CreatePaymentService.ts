@@ -129,7 +129,6 @@ class CreatePaymentService {
 
                 if (statusId) {
                     const teste = statusId.id;
-                    console.log(teste);
 
                     const updateOrder = await prismaClient.prismaClient.order.update({
                         where: {
