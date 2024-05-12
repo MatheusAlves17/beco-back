@@ -44,6 +44,7 @@ import { SelectOrderController } from "./orders/SelectOrderController";
 
 import { GetItemController } from "./item/GetItemController";
 import { CreateItemController } from "./item/CreateItemController";
+import { ItemsToExchangeController } from "./item/ItemsToExchangeController";
 
 import { CreateCouponController } from "./coupon/CreateCouponController"
 import { UpdateCouponController } from "./coupon/UpdateCouponController";
@@ -120,6 +121,7 @@ export {
 export {
     GetItemController,
     CreateItemController,
+    ItemsToExchangeController
 };
 
 

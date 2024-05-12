@@ -45,6 +45,7 @@ import { SelectOrderService } from "./orders/SelectOrderService";
 
 import { GetItemService } from "./item/GetItemService";
 import { CreateItemService } from "./item/CreateItemService";
+import { ItemsToExchangeService } from "./item/ItemsToExchangeService";
 
 import { CreateCouponService } from "./coupon/CreateCouponService";
 import { UpdateCouponService } from "./coupon/UpdateCouponService";
@@ -121,6 +122,7 @@ export {
 export {
     GetItemService,
     CreateItemService,
+    ItemsToExchangeService
 };
 
 export {

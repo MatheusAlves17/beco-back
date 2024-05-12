@@ -49,7 +49,8 @@ import {
 
     GetItemController,
     CreateItemController,
-
+    ItemsToExchangeController,
+    
     CreateCouponController,
     UpdateCouponController,
     SelectMyCouponsController,
@@ -120,6 +121,8 @@ router.get('/order/all', isAuthenticated, new SelectAllOrdersController().handle
 router.get('/items', isAuthenticated, new GetItemController().handle);
 router.post('/item', isAuthenticated,  new CreateItemController().handle);
 router.put('/item', isAuthenticated, new UpdateItemController().handle);
+router.put('/item-exchange', isAuthenticated, new ItemsToExchangeController().handle);
+
 
 
 router.post('/coupon', isAuthenticated, new CreateCouponController().handle);
