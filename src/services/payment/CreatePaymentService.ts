@@ -119,33 +119,36 @@ class CreatePaymentService {
                 });
 
                 const statusId = await prismaClient.prismaClient.status.findFirst({
-                    where:{
-                        name: 'em preparação'
+                    where: {
+                        name: 'Em preparação'
                     },
-                    select:{
+                    select: {
                         id: true
                     }
                 });
-        
-                const status = statusId.id;
-        
-                const updateOrder = await prismaClient.prismaClient.order.update({
-                    where:{
-                        id: order_id
-                    },
-                    data:{
-                        status
-                    }
-                });
 
-                if(updateOrder){   
+                if (statusId) {
+                    const teste = statusId.id;
+                    console.log(teste);
+
+                    const updateOrder = await prismaClient.prismaClient.order.update({
+                        where: {
+                            id: order_id
+                        },
+                        data: {
+                        status: { connect: { id: teste } }
+                        }
+                    });
+
+                    // if(updateOrder){   
                     return { msg: 'Pagamento realizado com sucesso!' };
                 }
+                // }
             }
         };
 
 
-        
+
 
     };
 };
