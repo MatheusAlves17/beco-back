@@ -60,7 +60,8 @@ import {
     GetAllOrdersController,
     UpdateOrderStatusController,
     AuthorizeExchangeController,
-    GetItemsExchangeController
+    GetItemsExchangeController,
+    ReceiptItemsController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -138,6 +139,7 @@ router.get('/admin/orders', new GetAllOrdersController().handle);
 router.post('/admin/orders/status', new UpdateOrderStatusController().handle);
 router.get('/admin/items-exchange', new GetItemsExchangeController().handle);
 router.put('/admin/items-exchange', new AuthorizeExchangeController().handle);
+router.post('/admin/items-receipt', new ReceiptItemsController().handle);
 
 
 

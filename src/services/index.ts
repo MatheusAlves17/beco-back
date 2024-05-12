@@ -59,12 +59,15 @@ import { GetAllOrdersService } from "./admin/GetAllOrdersService";
 import { UpdateOrderStatusService } from "./admin/UpdateOrderStatusService";
 import { GetItemsExchangeService } from "./admin/GetItemsExchangeService";
 import { AuthorizeExchangeService } from "./admin/AuthorizeExchangeService";
+import { ReceiptItemsService } from "./admin/ReceiptItemsService";
+
 
 export {
     GetAllOrdersService,
     UpdateOrderStatusService,
     GetItemsExchangeService,
     AuthorizeExchangeService,
+    ReceiptItemsService,
 };
 
 export {

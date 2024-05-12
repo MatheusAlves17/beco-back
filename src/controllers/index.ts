@@ -58,12 +58,14 @@ import { GetAllOrdersController } from "./admin/GetAllOrdersController";
 import { UpdateOrderStatusController } from "./admin/UpdateOrderStatusController";
 import { GetItemsExchangeController } from "./admin/GetItemsExchangeController";
 import { AuthorizeExchangeController } from "./admin/AuthorizeExchangeController";
+import { ReceiptItemsController } from "./admin/ReceiptItemsController";
 
 export {
     GetAllOrdersController,
     UpdateOrderStatusController,
     GetItemsExchangeController,
-    AuthorizeExchangeController
+    AuthorizeExchangeController,
+    ReceiptItemsController
 }
 
 export {
