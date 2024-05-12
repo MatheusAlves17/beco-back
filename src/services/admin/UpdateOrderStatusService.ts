@@ -7,10 +7,10 @@ interface IUpdateStatus {
 class UpdateOrderStatusService {
     async execute({ order_id, status_id }: IUpdateStatus) {
 
-        if(!order_id){
+        if (!order_id) {
             throw new Error('Ordem de compra inválida!');
         }
-        if(!status_id){
+        if (!status_id) {
             throw new Error('Status obrigatório!');
         }
 
@@ -20,21 +20,21 @@ class UpdateOrderStatusService {
             },
             data: {
                 status: { connect: { id: status_id } }
-                
+
             }
         });
-        
+
         const updatedItems = await prismaClient.prismaClient.item.updateMany({
             where: {
                 order_id: order_id
             },
             data: {
-                status_id: { set:status_id  }
+                status_id: { set: status_id }
             }
         })
 
-        if(updatedOrder && updatedItems){
-            return {msg: 'Status atualizado com sucesso!'}
+        if (updatedOrder && updatedItems) {
+            return { msg: 'Status atualizado com sucesso!' }
         }
     };
 };

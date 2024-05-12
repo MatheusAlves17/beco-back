@@ -1,11 +1,10 @@
 import prismaClient from '../../prisma';
 
 class AuthorizeExchangeService {
-    async execute() {
-
+    async execute(items: string[]) {
         const status = await prismaClient.prismaClient.status.findFirst({
             where: {
-                name: "Em troca"
+                name: "Troca autorizada"
             },
             select: {
                 id: true
@@ -14,18 +13,16 @@ class AuthorizeExchangeService {
 
         const statusId = status.id;
 
-        const itemsToExchange = await prismaClient.prismaClient.item.findMany({
+        const itemsToExchange = await prismaClient.prismaClient.item.updateMany({
             where: {
-                status_id: statusId
+                id: {
+                    in: items
+                }
             },
-            select: {
-                id: true,
-                name: true,
-                price: true,
-                banner: true,
-                order_id: true,
+            data: {
+                status_id: statusId
             }
-        });
+        })
 
         return itemsToExchange;
     }
