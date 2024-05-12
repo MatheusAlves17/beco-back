@@ -43,12 +43,15 @@ import { UpdateOrderService } from "./orders/UpdateOrderService";
 import { SelectAllOrdersService } from "./orders/SelectAllOrdersService";
 import { SelectOrderService } from "./orders/SelectOrderService";
 
+import { GetItemService } from "./item/GetItemService";
 import { CreateItemService } from "./item/CreateItemService";
 
 import { CreateCouponService } from "./coupon/CreateCouponService";
 import { UpdateCouponService } from "./coupon/UpdateCouponService";
 import { SelectMyCouponsService } from "./coupon/SelectMyCouponsService";
 import { SelectValidCouponsService } from "./coupon/SelectValidCouponsService";
+
+import { CreateExchangesService } from './exchanges/CreateExchangesService';
 
 // ADMIN
 import { GetAllOrdersService } from "./admin/GetAllOrdersService";
@@ -116,6 +119,7 @@ export {
 };
 
 export {
+    GetItemService,
     CreateItemService,
 };
 
@@ -124,4 +128,8 @@ export {
     UpdateCouponService,
     SelectMyCouponsService,
     SelectValidCouponsService
+};
+
+export {
+    CreateExchangesService
 };

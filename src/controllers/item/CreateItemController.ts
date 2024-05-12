@@ -3,8 +3,6 @@ import { CreateItemService } from "../../services";
 
 class CreateItemController {
     async handle(req: Request, res: Response) {
-
-
         const {
             name,
             price,
@@ -14,8 +12,6 @@ class CreateItemController {
             status_id,
             user_id
         } = req.body;
-
-        console.log(user_id);
 
         // if (!req.file) {
         //     throw new Error("Falha ao enviar foto do produto")

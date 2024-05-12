@@ -47,6 +47,7 @@ import {
     SelectAllOrdersController,
     SelectOrderController,
 
+    GetItemController,
     CreateItemController,
 
     CreateCouponController,
@@ -116,6 +117,7 @@ router.post('/order', isAuthenticated, new CreateOrderController().handle);
 router.get('/order/one', isAuthenticated, new SelectOrderController().handle);
 router.get('/order/all', isAuthenticated, new SelectAllOrdersController().handle);
 
+router.get('/items', isAuthenticated, new GetItemController().handle);
 router.post('/item', isAuthenticated,  new CreateItemController().handle);
 router.put('/item', isAuthenticated, new UpdateItemController().handle);
 
@@ -127,9 +129,10 @@ router.get('/my-coupons', isAuthenticated, new SelectValidCouponsController().ha
 
 router.post('/payment', isAuthenticated, new CreatePaymentController().handle);
 
-
 router.get('/admin/orders', new GetAllOrdersController().handle)
 router.post('/admin/orders/status', new UpdateOrderStatusController().handle)
+
+
 
 
 export { router };

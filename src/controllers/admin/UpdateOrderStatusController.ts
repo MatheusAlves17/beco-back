@@ -6,6 +6,7 @@ class UpdateOrderStatusController {
         const { order_id, status_id } = req.body;
 
         const updateOrderStatusService = new UpdateOrderStatusService();
+        
         const orderUpdated = await updateOrderStatusService.execute({ order_id, status_id });
 
         return res.json(orderUpdated);
