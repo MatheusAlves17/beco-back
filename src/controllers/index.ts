@@ -51,6 +51,11 @@ import { SelectValidCouponsController } from "./coupon/SelectValidCouponsControl
 
 import { CreatePaymentController } from "./payment/CreatePaymentController";
 
+// ADMIN
+import { GetAllOrdersController } from "./admin/GetAllOrdersController";
+
+export { GetAllOrdersController }
+
 export {
     AuthUserController,
     CreateUserController,

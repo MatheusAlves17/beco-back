@@ -54,6 +54,8 @@ import {
     SelectMyCouponsController,
     SelectValidCouponsController,
     CreatePaymentController,
+    
+    GetAllOrdersController,
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -124,6 +126,8 @@ router.get('/my-coupons', isAuthenticated, new SelectValidCouponsController().ha
 
 router.post('/payment', isAuthenticated, new CreatePaymentController().handle);
 
+
+router.get('/admin/orders', new GetAllOrdersController().handle)
 
 
 export { router };
