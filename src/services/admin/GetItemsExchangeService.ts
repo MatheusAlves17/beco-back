@@ -24,6 +24,7 @@ class GetItemsExchangeService {
                 price: true,
                 banner: true,
                 order_id: true,
+                status: true,
             }
         });
 
