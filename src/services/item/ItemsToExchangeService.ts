@@ -2,6 +2,8 @@ import prismaClient from '../../prisma';
 
 class ItemsToExchangeService {
   async execute(items: string[]) {
+    console.log('OS ITENS PARA TROCA',items);
+    
 
     const status = await prismaClient.prismaClient.status.findFirst({
         where:{
