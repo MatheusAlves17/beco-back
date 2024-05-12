@@ -12,6 +12,7 @@ class GetItemService {
                 banner: true,
                 price: true,
                 order_id: true,
+                status: true,
             }
         });
 
