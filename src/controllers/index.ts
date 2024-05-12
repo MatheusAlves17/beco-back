@@ -56,8 +56,15 @@ import { CreatePaymentController } from "./payment/CreatePaymentController";
 // ADMIN
 import { GetAllOrdersController } from "./admin/GetAllOrdersController";
 import { UpdateOrderStatusController } from "./admin/UpdateOrderStatusController";
+import { GetItemsExchangeController } from "./admin/GetItemsExchangeController";
+import { AuthorizeExchangeController } from "./admin/AuthorizeExchangeController";
 
-export { GetAllOrdersController, UpdateOrderStatusController }
+export {
+    GetAllOrdersController,
+    UpdateOrderStatusController,
+    GetItemsExchangeController,
+    AuthorizeExchangeController
+}
 
 export {
     AuthUserController,

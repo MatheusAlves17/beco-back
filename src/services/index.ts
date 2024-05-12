@@ -57,8 +57,15 @@ import { CreateExchangesService } from './exchanges/CreateExchangesService';
 // ADMIN
 import { GetAllOrdersService } from "./admin/GetAllOrdersService";
 import { UpdateOrderStatusService } from "./admin/UpdateOrderStatusService";
+import { GetItemsExchangeService } from "./admin/GetItemsExchangeService";
+import { AuthorizeExchangeService } from "./admin/AuthorizeExchangeService";
 
-export { GetAllOrdersService, UpdateOrderStatusService };
+export {
+    GetAllOrdersService,
+    UpdateOrderStatusService,
+    GetItemsExchangeService,
+    AuthorizeExchangeService,
+};
 
 export {
     AuthUserService,
