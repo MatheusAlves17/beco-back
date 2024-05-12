@@ -120,7 +120,7 @@ class CreatePaymentService {
 
                 const statusId = await prismaClient.prismaClient.status.findFirst({
                     where:{
-                        name: 'Em preparação'
+                        name: 'em preparação'
                     },
                     select:{
                         id: true
