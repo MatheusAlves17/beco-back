@@ -56,6 +56,7 @@ import {
     CreatePaymentController,
     
     GetAllOrdersController,
+    UpdateOrderStatusController,
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -128,6 +129,7 @@ router.post('/payment', isAuthenticated, new CreatePaymentController().handle);
 
 
 router.get('/admin/orders', new GetAllOrdersController().handle)
+router.post('/admin/orders/status', new UpdateOrderStatusController().handle)
 
 
 export { router };
