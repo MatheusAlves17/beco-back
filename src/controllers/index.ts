@@ -37,10 +37,12 @@ import { UpdateStatusController } from "./status/UpdateStatusController";
 import { DeleteStatusController } from "./status/DeleteStatusController";
 import { SelectStatusController } from "./status/SelectStatusController";
 import { SelectAllStatusController } from "./status/SelectAllStatusController";
+
 import { CreateOrderController } from "./orders/CreateOrderController";
 import { UpdateOrderController } from "./orders/UpdateOrderController";
 import { SelectAllOrdersController } from "./orders/SelectAllOrdersController";
 import { SelectOrderController } from "./orders/SelectOrderController";
+import { CancelOrderController } from "./orders/CancelOrderController";
 
 import { GetItemController } from "./item/GetItemController";
 import { CreateItemController } from "./item/CreateItemController";
@@ -124,7 +126,8 @@ export {
     CreateOrderController,
     UpdateOrderController,
     SelectOrderController,
-    SelectAllOrdersController
+    SelectAllOrdersController,
+    CancelOrderController
 };
 
 export {

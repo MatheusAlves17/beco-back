@@ -42,6 +42,7 @@ import { CreateOrderService } from "./orders/CreateOrderService";
 import { UpdateOrderService } from "./orders/UpdateOrderService";
 import { SelectAllOrdersService } from "./orders/SelectAllOrdersService";
 import { SelectOrderService } from "./orders/SelectOrderService";
+import { CancelOrderService } from "./orders/CancelOrderService";
 
 import { GetItemService } from "./item/GetItemService";
 import { CreateItemService } from "./item/CreateItemService";
@@ -127,6 +128,7 @@ export {
     UpdateOrderService,
     SelectOrderService,
     SelectAllOrdersService,
+    CancelOrderService,
 };
 
 export {

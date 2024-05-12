@@ -46,6 +46,7 @@ import {
     UpdateOrderController,
     SelectAllOrdersController,
     SelectOrderController,
+    CancelOrderController,
 
     GetItemController,
     CreateItemController,
@@ -120,6 +121,7 @@ router.put('/order', isAuthenticated, new UpdateOrderController().handle);
 router.post('/order', isAuthenticated, new CreateOrderController().handle);
 router.get('/order/one', isAuthenticated, new SelectOrderController().handle);
 router.get('/order/all', isAuthenticated, new SelectAllOrdersController().handle);
+router.post('/order/cancel',isAuthenticated, new CancelOrderController().handle)
 
 router.get('/items', isAuthenticated, new GetItemController().handle);
 router.post('/item', isAuthenticated,  new CreateItemController().handle);
