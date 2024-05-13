@@ -11,6 +11,8 @@ class GetAllOrdersService {
                 status: true,
                 value_total: true,
                 user_id: true,
+                user: true,
+                created_at: true,
             }
         });
 
