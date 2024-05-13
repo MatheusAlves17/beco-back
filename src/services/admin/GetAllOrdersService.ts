@@ -10,7 +10,9 @@ class GetAllOrdersService {
                 item: true,
                 status: true,
                 value_total: true,
-                user: true,
+                user: {select: {
+                    password: false
+                }},
                 created_at: true,
             }
         });
