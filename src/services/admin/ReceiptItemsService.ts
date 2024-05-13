@@ -10,19 +10,19 @@ class ReceiptItemsService {
                 id: true
             }
         });
-        
+
         const statusId = status.id;
-        
+
         const productCounts: { [productId: string]: number } = {};
         const userSums: { [userId: string]: number } = {};
 
-        
+
         for (let item of items) {
             const itemData = await prismaClient.prismaClient.item.findUnique({
                 where: {
                     id: item
                 },
-                include:{
+                include: {
                     user: true
                 }
             });
@@ -46,14 +46,14 @@ class ReceiptItemsService {
             };
 
             const updatedItems = await prismaClient.prismaClient.item.update({
-                where:{
+                where: {
                     id: item
                 },
-                data:{
+                data: {
                     status_id: statusId
                 }
             });
-            
+
         };
 
         for (const productId in productCounts) {
@@ -75,7 +75,7 @@ class ReceiptItemsService {
             sum = userSums[userId];
 
             await prismaClient.prismaClient.coupon.create({
-               
+
                 data: {
                     value: sum,
                     user_id: userId
@@ -84,15 +84,15 @@ class ReceiptItemsService {
         }
 
         const order = await prismaClient.prismaClient.order.update({
-            where:{
-                id:order_id
+            where: {
+                id: order_id
             },
-            data:{
+            data: {
                 status_id: status.id
             }
-        })
-        
-        return {msg: 'Estoque atualizado e cupom gerado!'}
+        });
+
+        return { msg: 'Estoque atualizado e cupom gerado!' }
 
     };
 };
