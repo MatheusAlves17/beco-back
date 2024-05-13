@@ -1,7 +1,7 @@
 import prismaClient from '../../prisma';
 
 class ReceiptItemsService {
-    async execute(items: string[]) {
+    async execute(items: string[], order_id?: string) {
         const status = await prismaClient.prismaClient.status.findFirst({
             where: {
                 name: 'Troca encerrada'
@@ -82,6 +82,15 @@ class ReceiptItemsService {
                 }
             });
         }
+
+        const order = await prismaClient.prismaClient.order.update({
+            where:{
+                id:order_id
+            },
+            data:{
+                status_id: status.id
+            }
+        })
         
         return {msg: 'Estoque atualizado e cupom gerado!'}
 
