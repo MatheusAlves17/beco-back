@@ -2,17 +2,15 @@ import prismaClient from '../../prisma/index';
 class GetAllOrdersService {
     async execute(status_id: string) {
         const orders = await prismaClient.prismaClient.order.findMany({
-            where:{
+            where: {
                 status_id: status_id,
             },
-            select:{
+            select: {
                 id: true,
                 item: true,
                 status: true,
                 value_total: true,
-                user: {select: {
-                    password: false
-                }},
+                user: { select: { name: true, id: true, email: true } },
                 created_at: true,
             }
         });
