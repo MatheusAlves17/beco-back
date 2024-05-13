@@ -2,9 +2,10 @@ import prismaClient from '../../prisma';
 
 class SelectAllOrdersService {
     async execute(user_id: string) {
+
         const orders = await prismaClient.prismaClient.order.findMany({
             where: {
-                user_id
+                user_id,
             },
             select: {
                 id: true,

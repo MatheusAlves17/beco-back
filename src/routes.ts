@@ -62,7 +62,8 @@ import {
     UpdateOrderStatusController,
     AuthorizeExchangeController,
     GetItemsExchangeController,
-    ReceiptItemsController
+    ReceiptItemsController,
+    GetOrdersCancelController
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -130,7 +131,7 @@ router.put('/item-exchange', isAuthenticated, new ItemsToExchangeController().ha
 
 
 
-router.post('/coupon', isAuthenticated, new CreateCouponController().handle);
+router.post('/coupon', new CreateCouponController().handle);
 router.put('/coupon', isAuthenticated, new UpdateCouponController().handle);
 router.get('/all-my-coupons', isAuthenticated, new SelectMyCouponsController().handle);
 router.get('/my-coupons', isAuthenticated, new SelectValidCouponsController().handle);
@@ -142,6 +143,7 @@ router.post('/admin/orders/status', new UpdateOrderStatusController().handle);
 router.get('/admin/items-exchange', new GetItemsExchangeController().handle);
 router.put('/admin/items-exchange', new AuthorizeExchangeController().handle);
 router.post('/admin/items-receipt', new ReceiptItemsController().handle);
+router.get('/admin/orders-cancel', new GetOrdersCancelController().handle);
 
 
 

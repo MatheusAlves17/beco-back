@@ -61,6 +61,7 @@ import { UpdateOrderStatusService } from "./admin/UpdateOrderStatusService";
 import { GetItemsExchangeService } from "./admin/GetItemsExchangeService";
 import { AuthorizeExchangeService } from "./admin/AuthorizeExchangeService";
 import { ReceiptItemsService } from "./admin/ReceiptItemsService";
+import { GetOrdersCancelService } from "./admin/GetOrdersCancelService";
 
 
 export {
@@ -69,6 +70,7 @@ export {
     GetItemsExchangeService,
     AuthorizeExchangeService,
     ReceiptItemsService,
+    GetOrdersCancelService
 };
 
 export {

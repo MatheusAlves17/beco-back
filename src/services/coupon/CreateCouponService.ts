@@ -4,38 +4,18 @@ import prismaClient from '../../prisma';
 
 
 class CreateCouponService {
-    async execute({ user_id, value, client_id }: CreateCoupon) {
+    async execute(order_id: string) {
         
-        if(!user_id){
-            throw new Error('Usuário obrigatório');
-        }
-        
-        const isAdmin = await prismaClient.prismaClient.user.findFirst({
+        const order = await prismaClient.prismaClient.order.findFirst({
             where:{
-                id: user_id
+                id: order_id
             }
         });
-
-        if(isAdmin.role !== 'admin'){
-            throw new Error('Operação não autorizada');
-        }
-
-        if(!client_id){
-            throw new Error('Usuário obrigatório');
-        }
         
-        if(!value){
-            throw new Error('Valor obrigatório');
-        }
-
-        if(value < 10){
-            throw new Error('Valor não pode ser menor que R$ 10');
-        }
-
         const coupon = await prismaClient.prismaClient.coupon.create({
             data:{
-                value,
-                user_id: client_id
+                value: order.value_total,
+                user_id: order.user_id
             },
             select:{
                 id: true,

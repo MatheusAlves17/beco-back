@@ -1,17 +1,17 @@
 import prismaClient from '../../prisma';
 
 class AuthorizeExchangeService {
-    async execute(items: string[]) {
-        const status = await prismaClient.prismaClient.status.findFirst({
-            where: {
-                name: "Troca autorizada"
-            },
-            select: {
-                id: true
-            }
-        })
+    async execute(items: string[], status_id: string) {
+        // const status = await prismaClient.prismaClient.status.findFirst({
+        //     where: {
+        //         id: status_id
+        //     },
+        //     select: {
+        //         id: true
+        //     }
+        // })
 
-        const statusId = status.id;
+        // const statusId = status.id;
 
         const itemsToExchange = await prismaClient.prismaClient.item.updateMany({
             where: {
@@ -20,7 +20,7 @@ class AuthorizeExchangeService {
                 }
             },
             data: {
-                status_id: statusId
+                status_id: status_id
             }
         })
 
