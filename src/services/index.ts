@@ -47,6 +47,7 @@ import { CancelOrderService } from "./orders/CancelOrderService";
 import { GetItemService } from "./item/GetItemService";
 import { CreateItemService } from "./item/CreateItemService";
 import { ItemsToExchangeService } from "./item/ItemsToExchangeService";
+import { SendItemsService } from "./item/SendItemsService";
 
 import { CreateCouponService } from "./coupon/CreateCouponService";
 import { UpdateCouponService } from "./coupon/UpdateCouponService";
@@ -136,7 +137,8 @@ export {
 export {
     GetItemService,
     CreateItemService,
-    ItemsToExchangeService
+    ItemsToExchangeService,
+    SendItemsService,
 };
 
 export {

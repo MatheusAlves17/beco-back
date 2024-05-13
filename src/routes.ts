@@ -10,47 +10,48 @@ import {
     UpdatePasswordController,
     SelectAllUsersController,
     UpdateActivityUserController,
-
+    
     CreateCardController,
     DeleteCardController,
     UpdateCardController,
     SelectCardController,
     SelectCardsController,
-
+    
     CreateAddressController,
     UploadAddressController,
     DeleteAddressController,
     SelectAddressController,
     SelectAllAddressController,
-
+    
     CreateCategoryController,
     SelectCategoryController,
     UpdateCategoryController,
     SelectAllCategoriesController,
     DeleteCategoryController,
-
+    
     CreateProductController,
     UpdateProductController,
     DeleteProductController,
     SelectProductController,
     SelectProductsController,
     InactiveProductController,
-
+    
     CreateStatusController,
     UpdateStatusController,
     DeleteStatusController,
     SelectStatusController,
     SelectAllStatusController,
-
+    
     CreateOrderController,
     UpdateOrderController,
     SelectAllOrdersController,
     SelectOrderController,
     CancelOrderController,
-
+    
     GetItemController,
     CreateItemController,
     ItemsToExchangeController,
+    SendItemsController,
     
     CreateCouponController,
     UpdateCouponController,
@@ -63,7 +64,7 @@ import {
     AuthorizeExchangeController,
     GetItemsExchangeController,
     ReceiptItemsController,
-    GetOrdersCancelController
+    GetOrdersCancelController,
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -126,6 +127,7 @@ router.post('/order/cancel',isAuthenticated, new CancelOrderController().handle)
 
 router.get('/items', isAuthenticated, new GetItemController().handle);
 router.post('/item', isAuthenticated,  new CreateItemController().handle);
+router.post('/item-sending', isAuthenticated,  new SendItemsController().handle);
 router.put('/item', isAuthenticated, new UpdateItemController().handle);
 router.put('/item-exchange', isAuthenticated, new ItemsToExchangeController().handle);
 
