@@ -118,7 +118,7 @@ class CreatePaymentService {
                     data: paymentData,
                 });
 
-                const statusId = await prismaClient.prismaClient.status.findFirst({
+                const status = await prismaClient.prismaClient.status.findFirst({
                     where: {
                         name: 'Em preparação'
                     },
@@ -127,22 +127,36 @@ class CreatePaymentService {
                     }
                 });
 
-                if (statusId) {
-                    const teste = statusId.id;
+                if (status) {
+                    const statusId = status.id;
 
                     const updateOrder = await prismaClient.prismaClient.order.update({
                         where: {
                             id: order_id
                         },
                         data: {
-                        status: { connect: { id: teste } }
+                            status: { connect: { id: statusId } }
+                        },
+                        select:{
+                            item: true
                         }
                     });
 
-                    // if(updateOrder){   
+                    for(let item of updateOrder.item){
+                        const updateItems = await prismaClient.prismaClient.item.update({
+                            where:{
+                                id: item.id
+                            },
+                            data:{
+                                status_id: status.id
+                            }
+                        });
+                    }
+
+
+
                     return { msg: 'Pagamento realizado com sucesso!' };
                 }
-                // }
             }
         };
 
