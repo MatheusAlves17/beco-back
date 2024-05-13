@@ -83,6 +83,14 @@ class ReceiptItemsService {
             });
         }
 
+        const order = await prismaClient.prismaClient.order.update({
+            where: {
+                id: order_id
+            },
+            data: {
+                status_id: status.id
+            }
+        });
 
         return { msg: 'Estoque atualizado e cupom gerado!' }
 
