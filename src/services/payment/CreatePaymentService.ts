@@ -88,36 +88,6 @@ class CreatePaymentService {
                     data: paymentData,
                 });
 
-                if (paymentCoupon && paymentsCards) {
-                    return { msg: 'Pagamento realizado com sucesso!' };
-                }
-
-            }
-            else {
-                throw new Error('Cupom inválido')
-            }
-        } else {
-
-            const isValueValid = (value: number) => {
-                return value > 10;
-            };
-
-            const isValid = cards.every(card => isValueValid(card.value));
-
-            if (!isValid) {
-                throw new Error('O valor mínimo precisa ser de R$ 10.00')
-            } else {
-                const paymentData = cards.map(card => ({
-                    card_id: card.id,
-                    value: card.value,
-                    order_id: order_id
-
-                }));
-
-                const paymentsCards = await prismaClient.prismaClient.paymentCard.createMany({
-                    data: paymentData,
-                });
-
                 const status = await prismaClient.prismaClient.status.findFirst({
                     where: {
                         name: 'Em preparação'
@@ -137,37 +107,108 @@ class CreatePaymentService {
                         data: {
                             status: { connect: { id: statusId } }
                         },
-                        select:{
+                        select: {
                             item: true
                         }
                     });
 
                     console.log(updateOrder);
-                    
 
-                    for(let item of updateOrder.item){
+
+                    for (let item of updateOrder.item) {
                         const updateItems = await prismaClient.prismaClient.item.update({
-                            where:{
+                            where: {
                                 id: item.id
                             },
-                            data:{
+                            data: {
                                 status_id: status.id
                             }
                         });
 
-                        return { msg: 'Pagamento realizado com sucesso!' };
+
+                        if (paymentCoupon && paymentsCards) {
+                            return { msg: 'Pagamento realizado com sucesso!' };
+                        }
                     }
 
 
-
                 }
-            }
+                else {
+                    throw new Error('Cupom inválido')
+                }
+            } else {
+
+                const isValueValid = (value: number) => {
+                    return value > 10;
+                };
+
+                const isValid = cards.every(card => isValueValid(card.value));
+
+                if (!isValid) {
+                    throw new Error('O valor mínimo precisa ser de R$ 10.00')
+                } else {
+                    const paymentData = cards.map(card => ({
+                        card_id: card.id,
+                        value: card.value,
+                        order_id: order_id
+
+                    }));
+
+                    const paymentsCards = await prismaClient.prismaClient.paymentCard.createMany({
+                        data: paymentData,
+                    });
+
+                    const status = await prismaClient.prismaClient.status.findFirst({
+                        where: {
+                            name: 'Em preparação'
+                        },
+                        select: {
+                            id: true
+                        }
+                    });
+
+                    if (status) {
+                        const statusId = status.id;
+
+                        const updateOrder = await prismaClient.prismaClient.order.update({
+                            where: {
+                                id: order_id
+                            },
+                            data: {
+                                status: { connect: { id: statusId } }
+                            },
+                            select: {
+                                item: true
+                            }
+                        });
+
+                        console.log(updateOrder);
+
+
+                        for (let item of updateOrder.item) {
+                            const updateItems = await prismaClient.prismaClient.item.update({
+                                where: {
+                                    id: item.id
+                                },
+                                data: {
+                                    status_id: status.id
+                                }
+                            });
+
+                            return { msg: 'Pagamento realizado com sucesso!' };
+                        }
+
+
+
+                    }
+                }
+            };
+
+
+
+
         };
-
-
-
-
     };
-};
+}
 
 export { CreatePaymentService };
