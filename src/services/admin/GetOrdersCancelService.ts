@@ -5,8 +5,11 @@ class GetOrdersCancelService {
 
         const status = await prismaClient.prismaClient.status.findFirst({
             where: {
-                name: "Cancelado"
-            }
+                AND: [
+                    { name: "Cancelado" },
+                    { name: "Itens devolvidos" }
+                ]
+            },
         });
 
         const orders = await prismaClient.prismaClient.order.findMany({
