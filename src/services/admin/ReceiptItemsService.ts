@@ -2,6 +2,7 @@ import prismaClient from '../../prisma';
 
 class ReceiptItemsService {
     async execute(items: string[], order_id: string) {
+
         const status = await prismaClient.prismaClient.status.findFirst({
             where: {
                 name: 'Troca encerrada'
@@ -70,6 +71,7 @@ class ReceiptItemsService {
                 }
             });
         }
+        
         let sum;
         for (const userId in userSums) {
             sum = userSums[userId];

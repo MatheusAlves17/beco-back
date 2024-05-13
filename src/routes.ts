@@ -141,7 +141,7 @@ router.get('/my-coupons', isAuthenticated, new SelectValidCouponsController().ha
 router.post('/payment', isAuthenticated, new CreatePaymentController().handle);
 
 router.get('/admin/orders', new GetAllOrdersController().handle);
-router.post('/admin/orders/status', new UpdateOrderStatusController().handle);
+router.put('/admin/orders/status', new UpdateOrderStatusController().handle);
 router.get('/admin/items-exchange', new GetItemsExchangeController().handle);
 router.put('/admin/items-exchange', new AuthorizeExchangeController().handle);
 router.post('/admin/items-receipt', new ReceiptItemsController().handle);
