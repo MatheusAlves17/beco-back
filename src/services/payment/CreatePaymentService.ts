@@ -142,20 +142,24 @@ class CreatePaymentService {
                         }
                     });
 
-                    for(let item of updateOrder.item){
-                        const updateItems = await prismaClient.prismaClient.item.update({
-                            where:{
-                                id: item.id
-                            },
-                            data:{
-                                status_id: status.id
-                            }
-                        });
-                    }
+                    console.log(updateOrder);
+                    
+
+                    // for(let item of updateOrder.item){
+                    //     const updateItems = await prismaClient.prismaClient.item.update({
+                    //         where:{
+                    //             id: item.id
+                    //         },
+                    //         data:{
+                    //             status_id: status.id
+                    //         }
+                    //     });
+
+                    //     return { msg: 'Pagamento realizado com sucesso!' };
+                    // }
 
 
 
-                    return { msg: 'Pagamento realizado com sucesso!' };
                 }
             }
         };
