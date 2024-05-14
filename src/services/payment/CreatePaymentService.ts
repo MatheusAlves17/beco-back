@@ -175,7 +175,7 @@ class CreatePaymentService {
                                 id: order_id
                             },
                             data: {
-                                status: { connect: { id: statusId } }
+                                status_id: statusId,
                             },
                             select: {
                                 item: true
