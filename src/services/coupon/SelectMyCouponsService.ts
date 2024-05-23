@@ -4,7 +4,10 @@ class SelectMyCouponsService {
     async execute(user_id: string) {
         const coupons = await prismaClient.prismaClient.coupon.findMany({
             where: {
-                user_id
+                AND: [
+                    { user_id: user_id },
+                    { isUsed: true }
+                ]
             }
         });
 
