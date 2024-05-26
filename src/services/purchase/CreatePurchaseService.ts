@@ -17,6 +17,7 @@ interface IItems {
     price: number;
     banner: string;
     product_id: string;
+    quantity?: number;
 
     // order_id: string;
     // status_id: string;
@@ -80,32 +81,35 @@ class CreatePurchaseService {
                 });
 
                 if (products.stock.toNumber() !== 0) {
-                    const createItem = await prismaClient.prismaClient.item.create({
-                        data: {
-                            name: item.name,
-                            price: item.price,
-                            banner: item.banner,
-                            order_id: order.id,
-                            product_id: item.product_id,
-                            status_id: status.id,
-                            user_id
-                        }
-                    })
-
-                    if (createItem) {
-                        const updateStock = await prismaClient.prismaClient.product.update({
-                            where: {
-                                id: item.product_id
-                            },
+                    for (let i = 0; i <= item.quantity; i++) {
+                        const createItem = await prismaClient.prismaClient.item.create({
                             data: {
-                                stock: {
-                                    decrement: 1
-                                }
+                                name: item.name,
+                                price: item.price,
+                                banner: item.banner,
+                                order_id: order.id,
+                                product_id: item.product_id,
+                                status_id: status.id,
+                                user_id
                             }
                         });
 
+                        if (createItem) {
+                            const updateStock = await prismaClient.prismaClient.product.update({
+                                where: {
+                                    id: item.product_id
+                                },
+                                data: {
+                                    stock: {
+                                        decrement: 1
+                                    }
+                                }
+                            });
 
-                    }
+
+                        }
+
+                    };
 
                 } else {
                     throw new Error('Produto indisponível');
@@ -147,7 +151,7 @@ class CreatePurchaseService {
                 };
             };
 
-            return {message: 'Compra finalizada'};
+            return { message: 'Compra finalizada' };
         };
 
 

@@ -25,7 +25,7 @@ class CreateCardService {
             throw new Error('Nome obrigatório');
         }
 
-        if (!name) {
+        if (!flag) {
             throw new Error('Bandeira é obrigatória');
         }
 
