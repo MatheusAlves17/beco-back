@@ -56,6 +56,8 @@ import { SelectValidCouponsService } from "./coupon/SelectValidCouponsService";
 
 import { CreateExchangesService } from './exchanges/CreateExchangesService';
 
+import { CreatePurchaseService } from "./purchase/CreatePurchaseService";
+
 // ADMIN
 import { GetAllOrdersService } from "./admin/GetAllOrdersService";
 import { UpdateOrderStatusService } from "./admin/UpdateOrderStatusService";
@@ -150,4 +152,8 @@ export {
 
 export {
     CreateExchangesService
+};
+
+export {
+    CreatePurchaseService
 };

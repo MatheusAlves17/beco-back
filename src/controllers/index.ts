@@ -56,6 +56,8 @@ import { SelectValidCouponsController } from "./coupon/SelectValidCouponsControl
 
 import { CreatePaymentController } from "./payment/CreatePaymentController";
 
+import { CreatePurchaseController } from "./purchase/CreatePurchaseController";
+
 // ADMIN
 import { GetAllOrdersController } from "./admin/GetAllOrdersController";
 import { UpdateOrderStatusController } from "./admin/UpdateOrderStatusController";
@@ -149,3 +151,5 @@ export {
 };
 
 export { CreatePaymentController };
+
+export { CreatePurchaseController };
