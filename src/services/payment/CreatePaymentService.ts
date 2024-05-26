@@ -77,20 +77,20 @@ class CreatePaymentService {
 
             });
 
-            if (paymentCoupon) {
-                const couponIds = coupon.map(card => card.id);
+            // if (paymentCoupon) {
+            //     const couponIds = coupon.map(card => card.id);
 
-                const updateCoupon = await prismaClient.prismaClient.coupon.updateMany({
-                    where: {
-                        id: {
-                            in: couponIds
-                        }
-                    },
-                    data: {
-                        isUsed: true
-                    }
-                });
-            }
+            //     const updateCoupon = await prismaClient.prismaClient.coupon.updateMany({
+            //         where: {
+            //             id: {
+            //                 in: couponIds
+            //             }
+            //         },
+            //         data: {
+            //             isUsed: true
+            //         }
+            //     });
+            // }
 
             const paymentData = cards.map(card => ({
                 id: card.id,
