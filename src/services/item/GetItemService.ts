@@ -20,19 +20,19 @@ class GetItemService {
         const itemMap = new Map<string, any>();
 
         items.forEach(item => {
-            if(itemMap.has(item.product_id)){
+            if (itemMap.has(item.product_id)) {
                 const itemExists = itemMap.get(item.product_id);
                 itemExists.quantity += 1;
-            }else{
-                itemMap.set(item.product_id, {...item, quantity: 1});
+            } else {
+                itemMap.set(item.product_id, { ...item, quantity: 1 });
             }
         });
 
 
 
-        
 
-        return Array.from(itemMap.values());
+        const products = Array.from(itemMap.values());
+        return { products: products, items: items }
     };
 };
 
