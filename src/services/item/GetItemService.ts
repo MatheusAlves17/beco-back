@@ -13,6 +13,7 @@ class GetItemService {
                 price: true,
                 order_id: true,
                 status: true,
+                product_id: true
             }
         });
 
