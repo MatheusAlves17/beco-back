@@ -17,6 +17,9 @@ class SelectAllOrdersService {
                 // address: true,
                 payment_cards: true,
                 payment_coupon: true
+            },
+            orderBy: {
+                created_at:'desc'
             }
         });
         return orders;
