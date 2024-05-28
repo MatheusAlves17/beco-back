@@ -33,9 +33,6 @@ class CreateAddressService {
             throw new Error('CEP obrigatório');
         };
 
-        if (!type) {
-            throw new Error('Tipo obrigatório');
-        };
 
         const address = await prismaClient.prismaClient.address.create({
             data: {
