@@ -6,7 +6,7 @@ class SelectMyCouponsService {
             where: {
                 AND: [
                     { user_id: user_id },
-                    { isUsed: true }
+                    { isUsed: false }
                 ]
             }
         });
