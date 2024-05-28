@@ -76,8 +76,7 @@ class ReceiptItemsService {
         for (const userId in userSums) {
             sum = userSums[userId];
 
-            await prismaClient.prismaClient.coupon.create({
-
+            const couponCreate = await prismaClient.prismaClient.coupon.create({
                 data: {
                     value: sum,
                     user_id: userId
@@ -93,6 +92,7 @@ class ReceiptItemsService {
                 status_id: status.id
             }
         });
+        
 
         return { msg: 'Estoque atualizado e cupom gerado!' }
 
