@@ -4,6 +4,7 @@ interface ProductCount {
     name: string;
     product_id: string;
     count: number;
+    created_at: Date;
   }
   
 
@@ -23,6 +24,7 @@ class RankingProductsService {
               name: product.name,
               product_id: product.product_id,
               count: 1,
+              created_at: product.created_at
             });
           }
         });
