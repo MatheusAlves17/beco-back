@@ -66,6 +66,7 @@ import {
     ReceiptItemsController,
     GetOrdersCancelController,
     CreatePurchaseController,
+    RankingProductsController,
 } from './controllers';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
@@ -150,7 +151,7 @@ router.put('/admin/items-exchange', new AuthorizeExchangeController().handle);
 router.post('/admin/items-receipt', new ReceiptItemsController().handle);
 router.get('/admin/orders-cancel', new GetOrdersCancelController().handle);
 
-
+router.get('/dashboard/ranking-products', new RankingProductsController().handle);
 
 
 

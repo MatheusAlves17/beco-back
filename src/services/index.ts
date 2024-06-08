@@ -67,6 +67,8 @@ import { ReceiptItemsService } from "./admin/ReceiptItemsService";
 import { GetOrdersCancelService } from "./admin/GetOrdersCancelService";
 
 
+import { RankingProductsService } from "./charts/RankingProductsService";
+
 export {
     GetAllOrdersService,
     UpdateOrderStatusService,
@@ -156,4 +158,8 @@ export {
 
 export {
     CreatePurchaseService
+};
+
+export {
+    RankingProductsService
 };

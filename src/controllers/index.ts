@@ -65,6 +65,7 @@ import { GetItemsExchangeController } from "./admin/GetItemsExchangeController";
 import { AuthorizeExchangeController } from "./admin/AuthorizeExchangeController";
 import { ReceiptItemsController } from "./admin/ReceiptItemsController";
 import { GetOrdersCancelController } from "./admin/GetOrdersCancelController";
+import { RankingProductsController } from "./charts/RankingProductsController";
 
 export {
     GetAllOrdersController,
@@ -153,3 +154,7 @@ export {
 export { CreatePaymentController };
 
 export { CreatePurchaseController };
+
+export {
+    RankingProductsController,
+};
