@@ -3,7 +3,7 @@ import prismaClient from '../../prisma';
 class RankingProductsService {
     async execute(startDate: string, endDate: string) {
 
-        const products = await prismaClient.prismaClient.item.findMany();
+        const products = await prismaClient.prismaClient.order.findMany();
 
         const getDateOnly = (datetime) => {
             const date = new Date(datetime);
