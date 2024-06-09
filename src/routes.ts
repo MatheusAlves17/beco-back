@@ -151,7 +151,7 @@ router.put('/admin/items-exchange', new AuthorizeExchangeController().handle);
 router.post('/admin/items-receipt', new ReceiptItemsController().handle);
 router.get('/admin/orders-cancel', new GetOrdersCancelController().handle);
 
-router.get('/dashboard/ranking-products', new RankingProductsController().handle);
+router.get('/dashboard/ranking-sales', new RankingProductsController().handle);
 
 
 

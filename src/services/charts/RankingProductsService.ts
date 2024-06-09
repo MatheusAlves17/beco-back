@@ -1,41 +1,38 @@
 import prismaClient from '../../prisma';
 
-interface ProductCount {
-    name: string;
-    product_id: string;
-    count: number;
-    created_at: Date;
-  }
-  
-
-
 class RankingProductsService {
-    async execute() {
+    async execute(startDate: string, endDate: string) {
+
         const products = await prismaClient.prismaClient.item.findMany();
 
-        const productCountMap = new Map<string, ProductCount>();
+        const getDateOnly = (datetime) => {
+            const date = new Date(datetime);
+            return date.toISOString().split('T')[0];
+        };
 
-        products.forEach((product) => {
-          if (productCountMap.has(product.product_id)) {
-            const existingProduct = productCountMap.get(product.product_id)!;
-            existingProduct.count += 1;
-          } else {
-            productCountMap.set(product.product_id, {
-              name: product.name,
-              product_id: product.product_id,
-              count: 1,
-              created_at: product.created_at
-            });
-          }
+
+        const salesCount = {};
+
+        products.forEach(item => {
+            const date = getDateOnly(item.created_at);
+            if (date >= startDate && date <= endDate) {
+                const dateString = date.toString().split('T')[0];
+                if (salesCount[dateString]) {
+                    salesCount[dateString]++;
+                } else {
+                    salesCount[dateString] = 1;
+                }
+            }
         });
 
-        const productCountArray = Array.from(productCountMap.values());
+        const result = Object.keys(salesCount).map(date => ({
+            created_at: date,
+            sales: salesCount[date]
+        }));
 
-        
-        productCountArray.sort((a, b) => b.count - a.count);
+        return result;
 
 
-        return productCountArray;
     };
 };
 
