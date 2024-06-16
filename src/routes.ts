@@ -72,6 +72,7 @@ import {
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
 import { UpdateItemController } from './controllers/item/UpdateItemController';
+import { ChatController } from './controllers/ia/ChatController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
@@ -153,6 +154,6 @@ router.get('/admin/orders-cancel', new GetOrdersCancelController().handle);
 
 router.get('/dashboard/ranking-sales', new RankingProductsController().handle);
 
-
+router.post('/chat', new ChatController().handle);
 
 export { router };
