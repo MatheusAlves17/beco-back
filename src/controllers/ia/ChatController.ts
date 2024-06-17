@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 
+import prismaClient from '../../prisma';
+
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
@@ -10,91 +12,78 @@ class ChatController {
 
         const { question } = req.body;
 
+        const modelChat = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+        const products = await prismaClient.prismaClient.product.findMany();
+
+        async function generateEmbedding(text, model) {
+            const result = await model.embedContent(text);
+            return result.embedding.values;
+        }
+
+        async function calculateSimilarity(embedding1, embedding2) {
+            const dotProduct = embedding1.reduce((sum, value, index) => sum + value * embedding2[index], 0);
+            const norm1 = Math.sqrt(embedding1.reduce((sum, value) => sum + value * value, 0));
+            const norm2 = Math.sqrt(embedding2.reduce((sum, value) => sum + value * value, 0));
+            return dotProduct / (norm1 * norm2);
+        }
+
         async function run() {
-            // The Gemini 1.5 models are versatile and work with multi-turn conversations (like chat)
-            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+            const model = genAI.getGenerativeModel({ model: "embedding-001" });
 
-            const chat = model.startChat({
+            const productEmbeddings = await Promise.all(
+                products.map(async product => ({
+                    id: product.id,
+                    name: product.name,
+                    banner: product.path,
+                    price: product.price,
+                    description: product.description,
+                    embedding: await generateEmbedding(product.description, model)
+                }))
+            );
+
+            const userQueryEmbedding = await generateEmbedding(question, model);
+            const similarities = await Promise.all(
+                productEmbeddings.map(async product => ({
+                    id: product.id,
+                    name: product.name,
+                    banner: product.banner,
+                    price: product.price,
+                    description: product.description,
+                    similarity: await calculateSimilarity(userQueryEmbedding, product.embedding)
+                }))
+            );
+
+            similarities.sort((a, b) => b.similarity - a.similarity);
+
+            const topProducts = similarities.slice(0, 3);
+
+            const chat = modelChat.startChat({
                 history: [
-                    {
-                        role: "user",
-                        parts: [
-                            { text: "Olá, gostaria tenho um evento e não decidi o modelo do relógio" },
-                            // {text: "Evento: Casamento"},
-                            // {text: "Evento: Jantar"},
-                            // {text: "Evento: Casual"},
-                            // {text: "Evento: Corporativo"},
-                            // {text: "Estilo: Clássico"},
-                            // {text: "Estilo: Moderno"},
-                            // {text: "Estilo: Esportivo"},
-                            // {text: "Estilo: Elegante"},
-
-                        ],
-                    },
-                    {
-                        role: "model",
-                        parts: [
-                            {
-                                text: "Claro! Aqui nós temos alguns modelos perfeitos"
-                            },
-                            // {
-                            //     text: "Conte-me mais, é para um evento formal?"
-                            // },
-                            // {
-                            //     text: "O modelo Relógio Movado Couro Preto é perfeito para os eventos: formatura, casamento, jantar, corporativo"
-                            // },
-                            // {
-                            //     text: "O modelo Relógio Movado Couro Preto é perfeito para os estilos: clássico, elegante"
-                            // },
-                            // {
-                            //     text: "O modelo Relógio Preto é perfeito para os eventos: formatura, casamento, jantar"
-                            // },
-                            // {
-                            //     text: "O modelo Relógio Preto é perfeito para os estilos: esportivo, elegante"
-                            // },
-                            // {
-                            //     text: "O modelo Relógio Saint Germain Bronx 40mm é perfeito para os eventos: formatura, jantar, casual"
-                            // },
-                            // {
-                            //     text: "O modelo Relógio Saint Germain Bronx 40mm é perfeito para os estilos: moderno, esportivo"
-                            // },
-                        ],
-                    },
-                    {
-                        role: 'user',
-                        parts: [{ text: "Evento: Formatura" }]
-                    },
-                    {
-                        role: 'model',
-                        parts: [{ text: "O modelo Relógio Movado Couro Preto é perfeito para os eventos: formatura, casamento, jantar, corporativo" }]
-                    },
-                    {
-                        role: 'user',
-                        parts: [{ text: "Estilo: Moderno" }]
-                    },
-                    {
-                        role: 'model',
-                        parts: [{ text: "O modelo Relógio Movado Couro Preto é perfeito para os eventos: formatura, casamento, jantar, corporativo" }]
-                    },
-                    {
-                        role: 'model',
-                        parts: [{ text: "O modelo Relógio Movado Couro Preto é perfeito para os estilos: clássico, elegante" }]
-                    },
+                  {
+                    role: "user",
+                    parts: [{ text: "Evento: Formatura, estilo: moderno" }],
+                  },
+                  {
+                    role: "model",
+                    parts: [{ text: "Para um evento de formatura, os melhores modelos de relógios seriam minimalistas" }],
+                  },
                 ],
                 generationConfig: {
-                    maxOutputTokens: 100,
+                  maxOutputTokens: 100,
                 },
+                
             });
 
             const result = await chat.sendMessage(question);
             const response = await result.response;
             const text = response.text();
 
-            return res.json({ message: text })
+            return res.json({ message: text, products: topProducts });
         }
-
         run();
     }
+
 }
 
 export { ChatController };
