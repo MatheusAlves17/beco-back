@@ -105,8 +105,8 @@ class CreatePurchaseService {
                                     stock: {
                                         decrement: 1
                                     },
-                                    created_at: new Date(2023, 0, 1),
-                                    updated_at: new Date(2023, 0, 1)
+                                    created_at: new Date(2023, 9, 1),
+                                    updated_at: new Date(2023, 9, 1)
                                 }
                             });
 
