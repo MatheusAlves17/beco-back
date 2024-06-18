@@ -10,8 +10,6 @@ interface IPurchase {
     cards?: IPayment[];
     coupons?: IPayment[];
 
-    created_at?: Date;
-
 };
 
 interface IItems {
@@ -32,7 +30,7 @@ export interface IPayment {
 }
 
 class CreatePurchaseService {
-    async execute({ user_id, address_id, value_total, delivery, items, cards, coupons, created_at }: IPurchase) {
+    async execute({ user_id, address_id, value_total, delivery, items, cards, coupons }: IPurchase) {
 
         const status = await prismaClient.prismaClient.status.findFirst({
             where: {
@@ -93,8 +91,8 @@ class CreatePurchaseService {
                                 product_id: item.product_id,
                                 status_id: status.id,
                                 user_id,
-                                created_at: created_at,
-                                updated_at: created_at
+                                created_at: new Date(2023, 0, 1),
+                                updated_at: new Date(2023, 0, 1)
                             }
                         });
 
@@ -107,8 +105,8 @@ class CreatePurchaseService {
                                     stock: {
                                         decrement: 1
                                     },
-                                    created_at: created_at || '',
-                                    updated_at: created_at || ''
+                                    created_at: new Date(2023, 0, 1),
+                                    updated_at: new Date(2023, 0, 1)
                                 }
                             });
 

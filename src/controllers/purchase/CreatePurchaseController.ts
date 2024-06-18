@@ -5,7 +5,7 @@ import { CreatePurchaseService } from "../../services";
 class CreatePurchaseController {
     async handle(req: Request, res: Response) {
         const user_id = req.user_id;
-        const { value_total, address_id, delivery, items, cards, coupons, created_at} = req.body;
+        const { value_total, address_id, delivery, items, cards, coupons } = req.body;
 
         const createPurchaseService = new CreatePurchaseService();
 
@@ -17,7 +17,6 @@ class CreatePurchaseController {
             items,
             cards,
             coupons,
-            created_at
         });
 
         return res.json(purchase);
