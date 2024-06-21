@@ -8,7 +8,7 @@ class ChatController {
     async handle(req: Request, res: Response) {
         const { question } = req.body;
 
-        if (!question || question.trim() === '') {
+        if (!question) {
             return res.status(400).json({ error: "Question is required" });
         }
 
