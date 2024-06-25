@@ -19,7 +19,8 @@ class SelectAllOrdersService {
                 payment_coupon: true
             },
             orderBy: {
-                created_at:'desc'
+                created_at:'desc',
+                status_id: 'asc'
             }
         });
         return orders;

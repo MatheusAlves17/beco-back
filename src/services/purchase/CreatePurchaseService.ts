@@ -67,8 +67,8 @@ class CreatePurchaseService {
                 user_id: user_id,
                 status_id: status.id,
                 address_id: address_id,
-                created_at: new Date(2023, 0, 1),
-                updated_at: new Date(2023, 0, 1)
+                created_at: new Date(2023, 2, 4),
+                updated_at: new Date(2023, 2, 4)
             }
         });
 
@@ -93,8 +93,8 @@ class CreatePurchaseService {
                                 product_id: item.product_id,
                                 status_id: status.id,
                                 user_id,
-                                created_at: new Date(2023, 0, 1),
-                                updated_at: new Date(2023, 0, 1)
+                                created_at: new Date(2023, 2, 4),
+                                updated_at: new Date(2023, 2, 4)
                             }
                         });
 
@@ -107,8 +107,8 @@ class CreatePurchaseService {
                                     stock: {
                                         decrement: 1
                                     },
-                                    created_at: new Date(2023, 9, 1),
-                                    updated_at: new Date(2023, 9, 1)
+                                    created_at: new Date(2023, 2, 4),
+                                    updated_at: new Date(2023, 2, 4)
                                 }
                             });
 
