@@ -15,6 +15,8 @@ class SelectProductsService {
             },
             where:{
                 active: true
+            },orderBy:{
+                created_at: 'asc'
             }
             
         });
