@@ -67,8 +67,8 @@ class CreatePurchaseService {
                 user_id: user_id,
                 status_id: status.id,
                 address_id: address_id,
-                created_at: new Date(2023, 9, 7),
-                updated_at: new Date(2023, 9, 7)
+                created_at: new Date(2023, 10, 8),
+                updated_at: new Date(2023, 10, 8)
             }
         });
 
