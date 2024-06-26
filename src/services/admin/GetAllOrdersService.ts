@@ -12,6 +12,9 @@ class GetAllOrdersService {
                 value_total: true,
                 user: { select: { name: true, id: true, email: true } },
                 created_at: true,
+            },
+            orderBy:{
+                created_at: 'desc'
             }
         });
 
